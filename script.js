@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initPageLoadExperience();
+    initTheme();
 
     // Initialize all components
     initNavigation();
@@ -46,6 +47,47 @@ function initPageLoadExperience() {
         heroImage.addEventListener('load', finishLoading, { once: true });
         heroImage.addEventListener('error', finishLoading, { once: true });
     }
+}
+
+// =========================================
+// THEME TOGGLE
+// =========================================
+function initTheme() {
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = themeToggle?.querySelector('.sun-icon');
+    const moonIcon = themeToggle?.querySelector('.moon-icon');
+    
+    if (!themeToggle || !sunIcon || !moonIcon) return;
+
+    // Check for saved theme preference or OS preference
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    const setTheme = (isDark) => {
+        if (isDark) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        }
+    };
+
+    // Initialize theme
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        setTheme(true);
+    } else {
+        setTheme(false);
+    }
+
+    // Toggle theme on click
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.hasAttribute('data-theme');
+        setTheme(!isDark);
+        localStorage.setItem('portfolio-theme', !isDark ? 'dark' : 'light');
+    });
 }
 
 // =========================================
@@ -248,7 +290,7 @@ function initProjectModal() {
                 'images/DevBug/devbug8.webp',
                 'images/DevBug/devbug9.webp'
             ],
-            link: 'https://devbug.ct.ws',
+            link: 'https://devbug.gt.tc',
             github: 'https://github.com/m-saad-1/DevBug'
         },
         2: {
@@ -269,7 +311,7 @@ function initProjectModal() {
                 'images/FashionHub/fashionhub8.webp',
                 'images/FashionHub/fashionhub9.webp'
             ],
-            link: 'https://fashionhub.ct.ws',
+            link: 'https://fashion-hub.gt.tc',
             github: 'https://github.com/m-saad-1/Men-Fashion-Hub'
         },
         3: {
@@ -292,7 +334,7 @@ function initProjectModal() {
                 'images/PersonalOS/PersonalOS 9.webp',
                 'images/PersonalOS/PersonalOS 10.webp'
             ],
-            link: '',
+            link: 'https://personal-os.netlify.app',
             github: 'https://github.com/m-saad-1/Progress-Operating-System'
         },
         4: {
@@ -310,7 +352,7 @@ function initProjectModal() {
                 'images/VisualShare/visual3.webp',
                 'images/VisualShare/visual4.webp'
             ],
-            link: 'https://visualshare.ct.ws/',
+            link: 'https://visualshare.gt.tc',
             github: 'https://github.com/m-saad-1/VisualShare'
         },
         5: {
