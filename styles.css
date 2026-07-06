@@ -1932,10 +1932,16 @@ a.contact-value:hover {
     }
 
     .nav-container {
-        grid-template-columns: 1fr auto;
+        grid-template-columns: 1fr auto auto;
+        gap: var(--spacing-md);
     }
 
     .nav-meta {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .nav-datetime {
         display: none;
     }
 
