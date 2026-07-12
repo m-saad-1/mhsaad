@@ -415,7 +415,7 @@ function initProjectModal() {
             icon: '📄',
             description: 'A platform designed to simplify the discovery, sharing, and discussion of academic research papers. PaperShare provides a unified interface for students, researchers, and academics to request hard-to-find papers, upload documents, and engage in real-time academic discourse. Features include a dynamic leaderboard, interactive chat, and a highly organized paper repository.',
             tech: ['Next.js', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'WebSockets'],
-            thumbnail: 'images/papershare/Thumbnail.png',
+            thumbnail: 'images/papershare/Thumbnail.avif',
             images: [
                 'images/papershare/Main_page.avif',
                 'images/papershare/Dashboard.avif',
