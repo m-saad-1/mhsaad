@@ -415,15 +415,15 @@ function initProjectModal() {
             icon: '📄',
             description: 'A platform designed to simplify the discovery, sharing, and discussion of academic research papers. PaperShare provides a unified interface for students, researchers, and academics to request hard-to-find papers, upload documents, and engage in real-time academic discourse. Features include a dynamic leaderboard, interactive chat, and a highly organized paper repository.',
             tech: ['Next.js', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'WebSockets'],
-            thumbnail: 'images/papershare/Thumbnail.avif',
+            thumbnail: 'images/Papershare/Thumbnail.avif',
             images: [
-                'images/papershare/Main_page.avif',
-                'images/papershare/Dashboard.avif',
-                'images/papershare/Leaderboard.avif',
-                'images/papershare/Papers_page.avif',
-                'images/papershare/Chat_page.avif',
-                'images/papershare/Requested_papers.avif',
-                'images/papershare/Upload.avif'
+                'images/Papershare/Main_page.avif',
+                'images/Papershare/Dashboard.avif',
+                'images/Papershare/Leaderboard.avif',
+                'images/Papershare/Papers_page.avif',
+                'images/Papershare/Chat_page.avif',
+                'images/Papershare/Requested_papers.avif',
+                'images/Papershare/Upload.avif'
             ],
             link: 'https://papershare.vercel.app',
             caseStudy: 'papershare-case-study.html',
