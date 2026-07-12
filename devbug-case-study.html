@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DevBug Case Study - Developer Community Platform">
+    <title>DevBug Case Study | Muhammad Saad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="images/msstudio.webp">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Case Study Specific Styles */
+        .case-study-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-gray-200) 100%);
+            padding: 120px var(--spacing-xl) var(--spacing-2xl);
+            overflow: hidden;
+            border-bottom: 1px solid var(--color-gray-300);
+        }
+
+        .cs-hero-content {
+            max-width: 900px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .cs-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-white);
+            background-color: var(--color-black);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-title {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 8vw, 7rem);
+            line-height: 0.9;
+            letter-spacing: -1px;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--color-gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .cs-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+
+        .cs-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .cs-meta-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-gray-500);
+        }
+
+        .cs-meta-value {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-black);
+        }
+
+        .case-study-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-4xl) var(--spacing-xl);
+        }
+
+        .cs-section {
+            margin-bottom: var(--spacing-4xl);
+        }
+
+        .cs-section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            line-height: 1;
+            letter-spacing: 1px;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-black);
+            display: inline-block;
+        }
+
+        .cs-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-gray-800);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-list {
+            margin-bottom: var(--spacing-lg);
+            padding-left: var(--spacing-xl);
+        }
+
+        .cs-list li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-gray-800);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+        }
+
+        .cs-list li::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.6rem;
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-black);
+            border-radius: 50%;
+        }
+
+        .cs-highlight-box {
+            background-color: var(--color-gray-100);
+            border-left: 4px solid var(--color-black);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .cs-highlight-box h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cs-image {
+            width: 100%;
+            height: auto;
+            margin: var(--spacing-2xl) 0;
+            border: 1px solid var(--color-gray-200);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .cs-image-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
+            margin-top: -1.5rem;
+            margin-bottom: var(--spacing-2xl);
+            font-style: italic;
+        }
+
+        .cs-tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .cs-tech-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-200);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .cs-tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .cs-tech-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--color-black);
+        }
+        
+        .cs-quote {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            line-height: 1.2;
+            color: var(--color-black);
+            text-align: center;
+            margin: var(--spacing-3xl) 0;
+            padding: 0 var(--spacing-xl);
+            position: relative;
+        }
+        
+        .cs-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--color-gray-300);
+            position: absolute;
+            top: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .case-study-hero {
+                min-height: 50vh;
+                padding-top: 100px;
+            }
+            .cs-section-title {
+                border-bottom-width: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html#hero" class="nav-logo" aria-label="MsStudio">
+                <img src="images/msstudio.webp" alt="MsStudio logo" class="brand-logo-image">
+                <span class="brand-logo-text">MhSaad</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#portfolio" class="nav-link">Back to Work</a></li>
+            </ul>
+            <div class="nav-meta">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="case-study-hero">
+        <div class="cs-hero-content">
+            <span class="cs-badge">Comprehensive Case Study</span>
+            <h1 class="cs-title">DevBug</h1>
+            <p class="cs-subtitle">A robust, community-driven platform empowering developers to report bugs, share solutions, collaborate in real-time, and build technical reputation.</p>
+        </div>
+    </header>
+
+    <!-- Meta Info -->
+    <div class="cs-meta-grid">
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">Lead Full Stack Developer</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Category</span>
+            <span class="cs-meta-value">Social Collaboration / Forum</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Tech Stack</span>
+            <span class="cs-meta-value">PHP, MySQL (PDO), JavaScript, HTML/CSS</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Architecture</span>
+            <span class="cs-meta-value">Procedural PHP with Route-style Entry</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="case-study-body">
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Executive Summary</h2>
+            <p class="cs-text">Software engineering is an inherently collaborative discipline. DevBug was engineered to centralize developer discourse, transitioning away from fragmented chat channels and undocumented tribal knowledge into a highly organized, searchable repository of bugs and solutions.</p>
+            <p class="cs-text">Constructed on a dependable LAMP/XAMPP stack using PHP and MySQL, DevBug features sophisticated state management, dynamic file handling, a reputation economy, and real-time messaging elements. The project illustrates a mastery of core web technologies to build a complex, multi-tenant community platform without relying on heavy frontend frameworks.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">The Problem Space</h2>
+            <p class="cs-text">Development teams frequently encounter identical technical roadblocks. When solutions are locked inside private direct messages or ephemeral Slack threads, institutional knowledge is lost. The challenge was to architect a platform that not only archived this knowledge but actively incentivized developers to contribute it.</p>
+            <ul class="cs-list">
+                <li><strong>Knowledge Fragmentation:</strong> Creating a centralized, searchable database for technical bugs and their verified solutions.</li>
+                <li><strong>Developer Engagement:</strong> Implementing a reputation system to reward high-quality technical contributions and accurate solutions.</li>
+                <li><strong>Contextual Collaboration:</strong> Providing real-time chat and discussion threads tied directly to specific technical issues, complete with code highlighting and file attachments.</li>
+                <li><strong>Security & Session Management:</strong> Ensuring robust user authentication and secure handling of user-generated file uploads.</li>
+            </ul>
+        </section>
+
+        <img src="images/DevBug/Mainpage.webp" alt="DevBug Main Dashboard" class="cs-image">
+        <div class="cs-image-caption">The dynamic main dashboard rendering real-time developer activity and critical bugs.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Product Vision & Strategy</h2>
+            <p class="cs-text">The goal was to construct a lightning-fast, highly resilient web application using fundamental web technologies. By utilizing procedural PHP fortified with PDO prepared statements, DevBug minimizes overhead while maximizing security and execution speed.</p>
+            <div class="cs-highlight-box">
+                <h4>Core Philosophy: Community & Continuity</h4>
+                <p>The platform must treat code as a first-class citizen. Deep integration with `highlight.js` ensures that code snippets are legible, while a rigid file-handling pipeline guarantees that technical logs and attachments can be securely shared across the community.</p>
+            </div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">System Architecture & Tech Stack</h2>
+            <p class="cs-text">DevBug avoids modern framework bloat by employing a route-style PHP architecture. Pages act as their own entry points, calling shared UI components and utility helpers to maintain a DRY (Don't Repeat Yourself) codebase.</p>
+            
+            <div class="cs-tech-grid">
+                <div class="cs-tech-card"><div class="cs-tech-name">PHP 8.0+</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">MySQL (PDO)</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">Vanilla JS</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">Highlight.js</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">HTML5 / CSS3</div></div>
+            </div>
+
+            <p class="cs-text" style="margin-top: 2rem;"><strong>Database Integration:</strong> The `config/database.php` module establishes a singleton PDO connection. This ensures connection pooling efficiency and enforces prepared statements globally across the application.</p>
+            <p class="cs-text"><strong>Upload Infrastructure:</strong> A strict hierarchical directory structure (`uploads/chat_attachments`, `uploads/solution_files`, etc.) separates user-generated content, allowing for granular execution restrictions and security monitoring on the server level.</p>
+        </section>
+
+        <img src="images/DevBug/Bugs.webp" alt="Bug Reporting Interface" class="cs-image">
+        <div class="cs-image-caption">The bug reporting interface, featuring markdown support and categorical tagging.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Reputation & Leaderboard Mechanics</h2>
+            <p class="cs-text">To drive engagement, DevBug employs a sophisticated reputation economy. Users earn reputation points when their solutions are upvoted or marked as verified. This data cascades into dynamic Leaderboards (`leaderboard.php`), tracking all-time and period-based rankings.</p>
+            <p class="cs-text">This gamification turns a standard forum into a competitive, merit-based community, encouraging thorough, well-documented technical answers.</p>
+        </section>
+        
+        <img src="images/DevBug/Leaderboard.webp" alt="Reputation Leaderboard" class="cs-image">
+        <div class="cs-image-caption">The gamified leaderboard rewarding top technical contributors.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Real-Time Chat & Notifications</h2>
+            <p class="cs-text">Beyond asynchronous forum posts, DevBug facilitates immediate collaboration via an integrated messaging system (`chat.php`). Developers can engage in real-time styled chat, share code snippets, and attach technical logs directly into the conversation stream.</p>
+            <p class="cs-text">An in-app notification engine (`notifications_handler.php`) alerts users when their bugs receive solutions or when they are mentioned in discussions, drastically reducing the time-to-resolution for critical software issues.</p>
+        </section>
+        
+        <div class="cs-quote">Knowledge isolated in direct messages is knowledge lost. DevBug brings solutions into the light.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Security & Session Management</h2>
+            <p class="cs-text">As a platform designed for developers, security was paramount:</p>
+            <ul class="cs-list">
+                <li><strong>Session Hardening:</strong> Extensive use of secure PHP sessions ensures user state is safely maintained across the application, with resilient "remember-me" cookie mechanisms.</li>
+                <li><strong>SQL Injection Prevention:</strong> 100% adherence to PDO prepared statements. Dynamic inputs are never concatenated directly into queries.</li>
+                <li><strong>File Upload Security:</strong> Uploaded files are rigorously validated against strict MIME-type whitelists, renamed cryptographically to prevent directory traversal attacks, and stored in non-executable directories.</li>
+            </ul>
+        </section>
+        
+        <img src="images/DevBug/Solutions.webp" alt="Solutions Interface" class="cs-image">
+        <div class="cs-image-caption">Detailed technical solutions featuring syntax highlighting and verifiable accuracy tracking.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Project Outcome & Impact</h2>
+            <p class="cs-text">DevBug successfully bridges the gap between a static knowledge base and an active collaboration hub. It proves that with disciplined architectural choices, highly interactive, feature-rich platforms can be built efficiently using fundamental LAMP stack technologies.</p>
+            <p class="cs-text">The result is a fast, secure, and engaging community platform that actively accelerates software development lifecycles by making technical problem-solving a collaborative, rewarding experience.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html#hero" class="footer-logo-link footer-brand-head" aria-label="Back to Hero">
+                        <span class="footer-name">MHSAAD</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/m-saad-1" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/muhammad-saad24/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+                </div>
+                <div class="footer-copy">
+                    <span>&copy; 2026 Muhammad Saad. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Init theme script
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            const sunIcon = themeToggle?.querySelector('.sun-icon');
+            const moonIcon = themeToggle?.querySelector('.moon-icon');
+            
+            if (!themeToggle || !sunIcon || !moonIcon) return;
+
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            const setTheme = (isDark) => {
+                if (isDark) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
+            };
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                setTheme(true);
+            } else {
+                setTheme(false);
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.hasAttribute('data-theme');
+                setTheme(!isDark);
+                localStorage.setItem('portfolio-theme', !isDark ? 'dark' : 'light');
+            });
+        });
+    </script>
+</body>
+</html>

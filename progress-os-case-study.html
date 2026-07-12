@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Progress OS Case Study - Advanced Desktop Productivity Architecture">
+    <title>Progress OS Case Study | Muhammad Saad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="images/msstudio.webp">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Case Study Specific Styles */
+        .case-study-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-gray-200) 100%);
+            padding: 120px var(--spacing-xl) var(--spacing-2xl);
+            overflow: hidden;
+            border-bottom: 1px solid var(--color-gray-300);
+        }
+
+        .cs-hero-content {
+            max-width: 1000px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .cs-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-white);
+            background-color: var(--color-black);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-title {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            line-height: 0.9;
+            letter-spacing: -1px;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--color-gray-600);
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .cs-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+
+        .cs-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .cs-meta-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-gray-500);
+        }
+
+        .cs-meta-value {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-black);
+        }
+
+        .case-study-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--spacing-4xl) var(--spacing-xl);
+        }
+
+        .cs-section {
+            margin-bottom: var(--spacing-4xl);
+        }
+
+        .cs-section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            line-height: 1;
+            letter-spacing: 1px;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-black);
+            display: inline-block;
+        }
+
+        .cs-text {
+            font-size: 1.15rem;
+            line-height: 1.85;
+            color: var(--color-gray-800);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-list {
+            margin-bottom: var(--spacing-lg);
+            padding-left: var(--spacing-xl);
+        }
+
+        .cs-list li {
+            font-size: 1.15rem;
+            line-height: 1.85;
+            color: var(--color-gray-800);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+
+        .cs-list li::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.7rem;
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-black);
+            border-radius: 50%;
+        }
+
+        .cs-highlight-box {
+            background-color: var(--color-gray-100);
+            border-left: 4px solid var(--color-black);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .cs-highlight-box h4 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: 0.5px;
+        }
+
+        .cs-image {
+            width: 100%;
+            height: auto;
+            margin: var(--spacing-2xl) 0 var(--spacing-md);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 6px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .cs-image-caption {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--color-gray-500);
+            margin-bottom: var(--spacing-3xl);
+            font-style: italic;
+        }
+
+        .cs-tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+
+        .cs-tech-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-200);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            border-radius: 4px;
+        }
+
+        .cs-tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .cs-tech-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-black);
+        }
+        
+        .cs-quote {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            line-height: 1.2;
+            color: var(--color-black);
+            text-align: center;
+            margin: var(--spacing-4xl) 0;
+            padding: 0 var(--spacing-xl);
+            position: relative;
+        }
+        
+        .cs-quote::before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--color-gray-300);
+            position: absolute;
+            top: -2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cs-module-header {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-top: var(--spacing-3xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-black);
+            border-left: 4px solid var(--color-black);
+            padding-left: var(--spacing-md);
+        }
+
+        @media (max-width: 768px) {
+            .case-study-hero {
+                min-height: 50vh;
+                padding-top: 100px;
+            }
+            .cs-section-title {
+                border-bottom-width: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html#hero" class="nav-logo" aria-label="MsStudio">
+                <img src="images/msstudio.webp" alt="MsStudio logo" class="brand-logo-image">
+                <span class="brand-logo-text">MhSaad</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#portfolio" class="nav-link">Back to Work</a></li>
+            </ul>
+            <div class="nav-meta">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="case-study-hero">
+        <div class="cs-hero-content">
+            <span class="cs-badge">Deep-Dive Engineering Case Study</span>
+            <h1 class="cs-title">Progress OS</h1>
+            <p class="cs-subtitle">A masterful exploration into building a resilient, offline-first desktop environment. Progress OS utilizes the Electron framework, an isolated React 18 frontend, and an immutable SQLite local database to architect the ultimate operating system for personal productivity and focus.</p>
+        </div>
+    </header>
+
+    <!-- Meta Info -->
+    <div class="cs-meta-grid">
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">Software Architect & Lead Engineer</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Domain</span>
+            <span class="cs-meta-value">Desktop Application (Windows/Mac/Linux)</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Core Technologies</span>
+            <span class="cs-meta-value">Electron, React 18, TypeScript, SQLite, Node.js</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Design Patterns</span>
+            <span class="cs-meta-value">Offline-first, Secure IPC Context Isolation, Optimistic UI</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="case-study-body">
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">The Engineering Premise</h2>
+            <p class="cs-text">Modern productivity software is inherently compromised by its reliance on the cloud. When the execution of a simple task update requires a round-trip to an AWS server, the user experiences latency, and the application introduces critical points of failure. <strong>Progress OS</strong> was conceptualized as a radical departure from SaaS fragility.</p>
+            <p class="cs-text">The goal was to engineer a monolithic desktop application that consolidates disparate workflow paradigms—task management, habit tracking, deep-work Pomodoro sessions, and analytical retrospectives—into a single, highly cohesive local environment. By prioritizing an offline-first architecture powered by a high-performance SQLite database, Progress OS guarantees absolute data privacy, zero-latency interactions, and complete immunity to network instability.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Architecting the Desktop Boundary</h2>
+            <p class="cs-text">Building a modern desktop application with web technologies introduces profound security and structural challenges. Progress OS leverages the Electron framework but strictly adheres to advanced Context Isolation and secure Inter-Process Communication (IPC) paradigms.</p>
+            
+            <div class="cs-tech-grid">
+                <div class="cs-tech-card"><div class="cs-tech-name">Electron Main Process</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">React 18 Renderer</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">better-sqlite3</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">Zustand & React Query</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">ContextBridge IPC</div></div>
+            </div>
+
+            <p class="cs-text" style="margin-top: 2rem;"><strong>The Node.js Main Process:</strong> Operating outside the browser sandbox, this process acts as the absolute authority of the system. It handles privileged filesystem access, orchestrates automated database backups, and executes raw SQL queries using the synchronous `better-sqlite3` library for maximum throughput.</p>
+            <p class="cs-text"><strong>The Isolated React Renderer:</strong> The UI is entirely sandboxed. It has no direct access to Node.js modules or the local file system. Instead, it relies on a highly typed, pre-defined set of API endpoints exposed via Electron's `contextBridge`.</p>
+            <p class="cs-text"><strong>Asynchronous IPC Bridges:</strong> When a user completes a task in the UI, the React layer dispatches an IPC message. The Main process receives this, executes an atomic SQLite transaction, and asynchronously returns the mutated state back to the renderer. This strict boundary ensures malicious scripts cannot traverse the UI to corrupt the local machine, while keeping the UI thread unblocked during heavy data operations.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Deep Dive: Module Architecture</h2>
+            <p class="cs-text">Progress OS is not a single tool, but an ecosystem of interconnected domain modules. Each module features distinct data schemas but shares a unified design language and global state. Here is a comprehensive breakdown of the internal mechanics powering each page.</p>
+
+            <h3 class="cs-module-header">The Operations Dashboard (`dashboard.tsx`)</h3>
+            <p class="cs-text">The Dashboard acts as the central nervous system. It does not store its own data; rather, it utilizes complex SQL joins in the Main process to aggregate a real-time snapshot of the day. It actively pulls active Pomodoro timers, impending habit deadlines, and the top-priority tasks of the day. The state is synchronized using <strong>TanStack Query</strong>, ensuring that changes made in isolated modules immediately reflect on the dashboard without manual refetching.</p>
+            <img src="images/PersonalOS/Dashboard.webp" alt="Progress OS Dashboard" class="cs-image">
+
+            <h3 class="cs-module-header">Advanced Task Engine (`tasks.tsx`)</h3>
+            <p class="cs-text">Unlike simplistic to-do lists, the Task module implements a rigorous state machine for task lifecycles (Todo, In Progress, Blocked, Done). It supports dynamic priority sorting and infinite sub-task nesting.</p>
+            <p class="cs-text"><strong>The Daily Rollover Mechanic:</strong> A background cron-style function within the Node process detects when a day ends. It automatically executes a transaction to migrate incomplete tasks to the current day, recalculating their aging metadata. This prevents task abandonment and ensures the user is always confronted with their active backlog.</p>
+            <img src="images/PersonalOS/Task_page.webp" alt="Task Management Module" class="cs-image">
+
+            <h3 class="cs-module-header">Strategic Goal Tracking (`goals.tsx`)</h3>
+            <p class="cs-text">Goals are architected as high-level entity structures decoupled from daily tasks. They utilize relational foreign keys to link to specific milestones. The UI renders these relationships through sophisticated progress bars. As child milestones are marked complete, the SQLite trigger updates the parent Goal's completion percentage, seamlessly reflecting the macro-progress in the React view.</p>
+            <img src="images/PersonalOS/Goals_page.webp" alt="Goals Tracking Module" class="cs-image">
+
+            <h3 class="cs-module-header">Frequency-Aware Habit Engine (`habits.tsx`)</h3>
+            <p class="cs-text">Habit tracking requires complex temporal logic. The database does not simply store "completed"; it logs a timestamped completion event against a Habit ID. The Node backend uses SQL window functions to calculate current streaks, longest historical streaks, and a rolling 30-day consistency percentage.</p>
+            <p class="cs-text">The frontend visualizes this dense dataset using a GitHub-style activity heat map, allowing users to instantly identify micro-trends in their behavioral compliance.</p>
+            <img src="images/PersonalOS/Habits_page.webp" alt="Habits Tracker Module" class="cs-image">
+
+            <h3 class="cs-module-header">Integrated Time Logging (`time.tsx`)</h3>
+            <p class="cs-text">Focus requires boundaries. This module features a fully functional Pomodoro state machine that survives page navigation. If a user starts a timer and switches to the Notes tab, <strong>Zustand</strong> maintains the active timer state globally. Upon timer completion, the logged deep-work session is written directly to the database and hard-linked to a specific Task or Goal, completely preventing "lost time" and providing exact records of effort expenditure.</p>
+            <img src="images/PersonalOS/Time_management_page.webp" alt="Time Management Module" class="cs-image">
+
+            <h3 class="cs-module-header">Knowledge Capture (`notes.tsx`)</h3>
+            <p class="cs-text">A distraction-free, rich-text markdown environment for journaling and technical planning. The Notes module employs debounced IPC calls—as the user types, the React state updates instantly, but database writes are intelligently throttled to prevent I/O blocking, ensuring a silky-smooth typing experience even with massive documents.</p>
+            <img src="images/PersonalOS/Notes_page.webp" alt="Notes Module" class="cs-image">
+
+            <h3 class="cs-module-header">Data Visualization (`analytics.tsx`)</h3>
+            <p class="cs-text">The analytical brain of Progress OS. Utilizing the <strong>Recharts</strong> rendering library, this module digests raw SQLite temporal data into interactive, multi-range reports. It features custom hooks that query the backend for completion velocity over time, habit adherence trends across varying months, and time allocation matrices. It transforms a local database into a personal intelligence dashboard.</p>
+            <img src="images/PersonalOS/Analytics_page.webp" alt="Analytics Module" class="cs-image">
+
+            <h3 class="cs-module-header">Retrospectives & Workflows (`reviews.tsx`)</h3>
+            <p class="cs-text">This module programmatically generates weekly and monthly review templates based on the user's historical data. It pulls completed tasks from the Archive and unfulfilled habits from the tracking engine, forcing the user to engage in structured self-reflection. It's an engineered workflow designed to recalibrate focus.</p>
+            <img src="images/PersonalOS/Reviews_page.webp" alt="Reviews Module" class="cs-image">
+
+            <h3 class="cs-module-header">Archive & Data Protection (`archive.tsx` & `backup.tsx`)</h3>
+            <p class="cs-text">To prevent the active SQLite tables from slowing down over years of use, the <strong>Archive</strong> module acts as a historical ledger. Completed items are soft-deleted from active views and securely maintained here for long-term queries.</p>
+            <p class="cs-text">The <strong>Backup</strong> module is a critical infrastructure piece. It provides a UI to trigger Node.js filesystem operations that clone the SQLite database into a secure, timestamped directory, ensuring total protection against catastrophic data corruption or machine failure.</p>
+            <img src="images/PersonalOS/Archive_page.webp" alt="Archive Module" class="cs-image">
+
+            <h3 class="cs-module-header">Configuration (`settings.tsx`)</h3>
+            <p class="cs-text">A deeply customizable configuration hub controlling the entire application's behavior. From altering Pomodoro interval lengths to toggling a comprehensive system-wide Dark/Light theme (orchestrated seamlessly via Tailwind CSS class strategies), the settings module writes preferences to a dedicated local config file, persisting UX choices across application restarts.</p>
+        </section>
+        
+        <div class="cs-quote">An application is only as good as its worst edge case. Progress OS is engineered so that catastrophic data loss is structurally impossible.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Mastering State & UX Patterns</h2>
+            <p class="cs-text">The user experience of Progress OS is dictated by speed. Achieving zero-latency perception requires aggressive Optimistic UI patterns. When a user clicks a checkbox, the React state updates instantly, providing immediate visual feedback. The IPC call to the database happens silently in the background. If the Node database transaction fails, a custom <strong>Undo/History</strong> stack automatically reverts the React state and displays an Error Boundary toast notification. This ensures the UI never lies to the user.</p>
+            <p class="cs-text">Furthermore, the application is designed for power-users. A globally accessible <strong>Command Palette (implemented via cmdk)</strong> allows users to summon a Spotlight-like search bar from anywhere in the app using a keyboard shortcut. This bypasses the mouse entirely, allowing for rapid task creation, module navigation, and timer initiation.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Data Integrity & Reliability Engineering</h2>
+            <p class="cs-text">In a personal operating system, data loss represents a critical failure of trust. Progress OS implements robust reliability engineering:</p>
+            <ul class="cs-list">
+                <li><strong>Atomic Transactions:</strong> All complex state mutations—such as cascading a goal's completion status down to its child milestones—are wrapped in atomic SQLite transactions. If one query fails, the entire transaction rolls back, preventing orphaned data structures.</li>
+                <li><strong>Graceful Degradation:</strong> If the renderer process encounters a fatal React error, customized Error Boundaries catch the exception, log the stack trace locally, and present a recovery UI instead of crashing the Electron window to a white screen.</li>
+                <li><strong>Strict Type Sharing:</strong> A shared `types.ts` directory sits between the Node backend and React frontend. This guarantees that the JSON payloads passing through the IPC bridge conform exactly to expected schemas, eliminating runtime `undefined` errors.</li>
+            </ul>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Conclusion & Architectural Impact</h2>
+            <p class="cs-text">Progress OS is a testament to the immense power of local-first software architecture. By deliberately rejecting the complexities and latencies of cloud-dependent infrastructures, the project achieves unparalleled speed, absolute data ownership, and a fiercely focused user experience.</p>
+            <p class="cs-text">The fusion of Electron's native capabilities with the declarative power of React 18 and the unyielding reliability of SQLite proves that web technologies, when architected with extreme discipline, can produce desktop applications that rival or exceed the performance of native binaries. Progress OS stands as a fully realized, enterprise-grade operating system for the mind.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html#hero" class="footer-logo-link footer-brand-head" aria-label="Back to Hero">
+                        <span class="footer-name">MHSAAD</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/m-saad-1" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/muhammad-saad24/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+                </div>
+                <div class="footer-copy">
+                    <span>&copy; 2026 Muhammad Saad. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Init theme script
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            const sunIcon = themeToggle?.querySelector('.sun-icon');
+            const moonIcon = themeToggle?.querySelector('.moon-icon');
+            
+            if (!themeToggle || !sunIcon || !moonIcon) return;
+
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            const setTheme = (isDark) => {
+                if (isDark) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
+            };
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                setTheme(true);
+            } else {
+                setTheme(false);
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.hasAttribute('data-theme');
+                setTheme(!isDark);
+                localStorage.setItem('portfolio-theme', !isDark ? 'dark' : 'light');
+            });
+        });
+    </script>
+</body>
+</html>

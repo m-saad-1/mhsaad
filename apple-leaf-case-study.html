@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apple Leaf Disease Detection - Deep Dive Engineering Case Study">
+    <title>Apple Leaf Disease Detection | Engineering Case Study | Muhammad Saad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="images/msstudio.webp">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Case Study Specific Styles */
+        .case-study-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-gray-200) 100%);
+            padding: 120px var(--spacing-xl) var(--spacing-2xl);
+            overflow: hidden;
+            border-bottom: 1px solid var(--color-gray-300);
+        }
+
+        .cs-hero-content {
+            max-width: 1000px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .cs-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-white);
+            background-color: var(--color-black);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 0.9;
+            letter-spacing: -1px;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--color-gray-600);
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .cs-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+
+        .cs-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .cs-meta-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-gray-500);
+        }
+
+        .cs-meta-value {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-black);
+        }
+
+        .case-study-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--spacing-4xl) var(--spacing-xl);
+        }
+
+        .cs-section {
+            margin-bottom: var(--spacing-4xl);
+        }
+
+        .cs-section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            line-height: 1;
+            letter-spacing: 1px;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-black);
+            display: inline-block;
+        }
+
+        .cs-text {
+            font-size: 1.15rem;
+            line-height: 1.85;
+            color: var(--color-gray-800);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-list {
+            margin-bottom: var(--spacing-lg);
+            padding-left: var(--spacing-xl);
+        }
+
+        .cs-list li {
+            font-size: 1.15rem;
+            line-height: 1.85;
+            color: var(--color-gray-800);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+
+        .cs-list li::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.7rem;
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-black);
+            border-radius: 50%;
+        }
+
+        .cs-highlight-box {
+            background-color: var(--color-gray-100);
+            border-left: 4px solid var(--color-black);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .cs-highlight-box h4 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: 0.5px;
+        }
+
+        .cs-image {
+            width: 100%;
+            height: auto;
+            margin: var(--spacing-2xl) 0 var(--spacing-md);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 6px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .cs-image-caption {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--color-gray-500);
+            margin-bottom: var(--spacing-3xl);
+            font-style: italic;
+        }
+
+        .cs-tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+
+        .cs-tech-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-200);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            border-radius: 4px;
+        }
+
+        .cs-tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .cs-tech-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-black);
+        }
+        
+        .cs-quote {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            line-height: 1.2;
+            color: var(--color-black);
+            text-align: center;
+            margin: var(--spacing-4xl) 0;
+            padding: 0 var(--spacing-xl);
+            position: relative;
+        }
+        
+        .cs-quote::before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--color-gray-300);
+            position: absolute;
+            top: -2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cs-module-header {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-top: var(--spacing-3xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-black);
+            border-left: 4px solid var(--color-black);
+            padding-left: var(--spacing-md);
+        }
+
+        .cs-code-block {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: var(--spacing-xl);
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            overflow-x: auto;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        @media (max-width: 768px) {
+            .case-study-hero {
+                min-height: 50vh;
+                padding-top: 100px;
+            }
+            .cs-section-title {
+                border-bottom-width: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html#hero" class="nav-logo" aria-label="MsStudio">
+                <img src="images/msstudio.webp" alt="MsStudio logo" class="brand-logo-image">
+                <span class="brand-logo-text">MhSaad</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#portfolio" class="nav-link">Back to Work</a></li>
+            </ul>
+            <div class="nav-meta">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="case-study-hero">
+        <div class="cs-hero-content">
+            <span class="cs-badge">Deep-Dive Engineering Case Study</span>
+            <h1 class="cs-title">Apple Leaf Disease Detection System</h1>
+            <p class="cs-subtitle">An end-to-end, two-stage deep learning orchestration pipeline leveraging EfficientNet and custom Convolutional Neural Networks. Architected to accurately triage crop diseases while establishing agronomic trust through highly advanced, post-processed Grad-CAM explainability.</p>
+        </div>
+    </header>
+
+    <!-- Meta Info -->
+    <div class="cs-meta-grid">
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">Machine Learning Engineer</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Domain</span>
+            <span class="cs-meta-value">Agritech / Computer Vision</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Core Stack</span>
+            <span class="cs-meta-value">TensorFlow, Keras, OpenCV, Flask, TFLite</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Architecture</span>
+            <span class="cs-meta-value">EfficientNet, Custom CNN, Hierarchical Inference</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="case-study-body">
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">The Engineering Premise</h2>
+            <p class="cs-text">In precision agriculture, the rapid identification of crop pathogens is critical to preventing devastating yield losses. However, the adoption of deep learning in agronomy often falters due to the "black box" nature of neural networks. Agronomists cannot blindly trust a model's prediction without understanding exactly <em>why</em> that prediction was made.</p>
+            <p class="cs-text">The Apple Leaf Disease Detection System was engineered to solve two distinct challenges: computational efficiency in rejecting out-of-distribution data, and <strong>Visual Explainability (eXplainable AI - XAI)</strong>. By building a hierarchical inference pipeline (`unified_classifier.py`) and an aggressive image-processing engine, this project bridges the gap between raw predictive math and human-interpretable diagnostics.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Robust Data Preprocessing Pipeline</h2>
+            <p class="cs-text">A neural network's accuracy is inextricably linked to the quality of its inputs. To ensure consistency across both classification stages, I implemented a centralized preprocessing module (`utils/image_processing.py`).</p>
+            <p class="cs-text">When a user uploads an image, the pipeline utilizes the Pillow (`PIL`) library to dynamically compute the image's dimensions and execute a perfect center-crop. This removes extraneous background noise and focuses entirely on the central leaf object. The image is then passed through a `LANCZOS` resampling filter to resize it to a strict `224x224` resolution.</p>
+            <p class="cs-text">Crucially, before tensor injection, the RGB channels are scaled into a `[-1, 1]` continuous distribution via the `EfficientNet` preprocessor, aligning the user's raw upload with the mathematical distribution the model was originally trained upon.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">The Unified Two-Stage Inference Flow</h2>
+            <p class="cs-text">A naive single-stage classifier often fails in production because users will inevitably upload irrelevant images (e.g., tractors, faces, or non-apple leaves). The model will confidently misclassify this noise as a disease. To prevent this, I architected a rigorous <strong>Two-Stage Inference Pipeline</strong> orchestrated by `unified_classifier.py`.</p>
+            
+            <img src="images/leaf_disease_detection/Uplaodimage_and_predictedimageanddetails.webp" alt="Web Interface and Pipeline Result" class="cs-image">
+            <div class="cs-image-caption">The Flask-based frontend demonstrating a successful end-to-end inference lifecycle with latency metrics.</div>
+
+            <h3 class="cs-module-header">Stage 1: Domain Gatekeeper (EfficientNet)</h3>
+            <p class="cs-text">The first stage serves as an algorithmic bouncer. Powered by a transfer-learned EfficientNet architecture, it calculates confidence thresholds and top-2 margin differentials to classify the tensor into one of three states:</p>
+            <ul class="cs-list">
+                <li><strong>Not_Apple_Leaf:</strong> The request is immediately rejected. The API halts and returns a rejection payload, saving downstream GPU/CPU resources.</li>
+                <li><strong>Apple_Healthy:</strong> The pipeline terminates with a positive healthy result.</li>
+                <li><strong>Apple_Diseased:</strong> The leaf is valid but infected. The script measures the latency, logs the Stage 1 confidence matrix, and invokes Stage 2.</li>
+            </ul>
+
+            <h3 class="cs-module-header">Stage 2: Pathological Classification</h3>
+            <p class="cs-text">Only when Stage 1 explicitly flags a diseased state is the Stage 2 `leaf_classifier.py` invoked. This custom Convolutional Neural Network uses a `256x256` input to differentiate between highly similar fungal infections: <strong>Apple Scab</strong>, <strong>Black Rot</strong>, and <strong>Cedar Apple Rust</strong>.</p>
+            
+            <img src="images/leaf_disease_detection/Healthyimageprediction.webp" alt="Healthy Leaf Detection" class="cs-image">
+            <div class="cs-image-caption">The Stage 1 Gatekeeper detecting a healthy specimen and exiting the pipeline early.</div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Advanced Grad-CAM Explainability (XAI)</h2>
+            <p class="cs-text">Standard Gradient-weighted Class Activation Mapping (Grad-CAM) often fails in botanical imagery because the network tends to highlight high-contrast leaf edges rather than the actual internal fungal lesions. To solve this, I wrote an intensely customized pipeline (`gradcam_disease_focused.py`).</p>
+            
+            <img src="images/leaf_disease_detection/Gradcam_attentionmapanalysis_Explainability.webp" alt="Grad-CAM Attention Map" class="cs-image">
+            <div class="cs-image-caption">The customized Grad-CAM heat map highlighting the exact lesions the neural network used to determine the pathology.</div>
+
+            <p class="cs-text">The class automatically traces the model architecture backwards to locate the final convolutional layer. It then computes gradients focused entirely on the predicted disease class. From there, I engineered an aggressive, multi-step post-processing algorithm using OpenCV (`cv2`) to clean the resulting heatmaps:</p>
+            
+            <ul class="cs-list">
+                <li><strong>Edge & Shadow Suppression:</strong> A Sobel gradient magnitude mask (via Otsu's thresholding) detects physical leaf edges. A brightness threshold (sub-20th percentile) isolates dark background shadows. Both are used to explicitly penalize and suppress activation noise.</li>
+                <li><strong>Spatial vs. Feature Weighting:</strong> The final heatmap tensor is calculated by heavily favoring spatial location over raw feature importance (a strict 70/30 weighting split) to force tight localization.</li>
+                <li><strong>Morphological Cleaning:</strong> The tensor undergoes a Bilateral Filter for edge-preserving smoothing, followed by morphological closing (to fill gaps in the lesion highlight) and opening (to delete tiny isolated artifacts).</li>
+                <li><strong>CLAHE Enhancement:</strong> Contrast Limited Adaptive Histogram Equalization (with a clip limit of 2.0) is applied to make the thermal colors pop against the original image.</li>
+            </ul>
+        </section>
+        
+        <div class="cs-quote">Explainability is the difference between an academic toy and a trustworthy, deployable diagnostic tool.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Flask Backend & Edge Deployment</h2>
+            <p class="cs-text">The inference engine is wrapped in a production-ready Flask REST API (`app.py`). The `/predict` endpoint handles secure multipart file uploads with strict 16MB limits. The JSON payloads returned by the unified classifier contain deeply structured data: Stage 1 and Stage 2 confidence margins, milliseconds latency tracking, textual warnings if Stage 1 confidence was borderline, and the static path to the newly generated Grad-CAM overlay.</p>
+            
+            <img src="images/leaf_disease_detection/Diseasedimage_prediction.webp" alt="Diseased Image Prediction" class="cs-image">
+            <div class="cs-image-caption">The UI parsing the Flask API JSON response to render disease taxonomy and confidence scores.</div>
+
+            <h3 class="cs-module-header">TFLite Model Quantization</h3>
+            <p class="cs-text">Agricultural models frequently run in low-connectivity environments (mobile edge devices). To prove the system's deployability, I executed a rigorous post-training dynamic quantization phase.</p>
+            <p class="cs-text">The massive <strong>16.33 MB Keras model</strong> was compressed down to a <strong>4.36 MB TensorFlow Lite (TFLite) binary</strong>. This achieved a staggering 3.74x size reduction (73.3% smaller) and slashed CPU inference latency from 170ms down to 52.88ms, all while retaining an acceptable ~86% baseline accuracy—proving the architecture's viability for smartphone deployment.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Conclusion</h2>
+            <p class="cs-text">The Apple Leaf Disease Detection System successfully bridges the gap between academic deep learning and practical, trustworthy software engineering. By implementing a strict hierarchical filtering pipeline, the system proactively defends against out-of-distribution junk data.</p>
+            <p class="cs-text">Furthermore, by refusing to treat the neural network as a black box—instead forcing it to visually explain its logic via heavily post-processed, OpenCV-enhanced Grad-CAM heatmaps—the project demonstrates a mature, safety-first approach to deploying Artificial Intelligence in critical real-world environments.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html#hero" class="footer-logo-link footer-brand-head" aria-label="Back to Hero">
+                        <span class="footer-name">MHSAAD</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/m-saad-1" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/muhammad-saad24/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+                </div>
+                <div class="footer-copy">
+                    <span>&copy; 2026 Muhammad Saad. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Init theme script
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            const sunIcon = themeToggle?.querySelector('.sun-icon');
+            const moonIcon = themeToggle?.querySelector('.moon-icon');
+            
+            if (!themeToggle || !sunIcon || !moonIcon) return;
+
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            const setTheme = (isDark) => {
+                if (isDark) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
+            };
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                setTheme(true);
+            } else {
+                setTheme(false);
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.hasAttribute('data-theme');
+                setTheme(!isDark);
+                localStorage.setItem('portfolio-theme', !isDark ? 'dark' : 'light');
+            });
+        });
+    </script>
+</body>
+</html>

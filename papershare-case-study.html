@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaperShare - Case Study</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-black: #000000;
+            --color-white: #ffffff;
+            --color-gray-100: #f5f5f5;
+            --color-gray-200: #e5e5e5;
+            --color-gray-300: #d4d4d4;
+            --color-gray-400: #a3a3a3;
+            --color-gray-500: #737373;
+            --color-gray-600: #525252;
+            --color-gray-700: #404040;
+            --color-gray-800: #262626;
+            --color-gray-900: #171717;
+
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'Inter', sans-serif;
+
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            --spacing-4xl: 6rem;
+
+            --transition-fast: 0.15s ease;
+            --transition-base: 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--color-black); background: var(--color-white); line-height: 1.6; }
+
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--color-gray-200); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-family: var(--font-display); font-size: 1.5rem; text-decoration: none; color: var(--color-black); display: flex; align-items: center; gap: 0.5rem; }
+        .brand-logo-image { height: 24px; width: auto; }
+        .nav-menu { display: flex; list-style: none; gap: 2rem; }
+        .nav-link { text-decoration: none; color: var(--color-gray-700); font-weight: 500; font-size: 0.9rem; transition: color var(--transition-fast); }
+        .nav-link:hover { color: var(--color-black); }
+
+        .case-study-hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 5% 40px; background-color: var(--color-gray-100); }
+        .cs-hero-content { max-width: 800px; }
+        .cs-badge { display: inline-block; padding: 0.25rem 0.75rem; background: var(--color-black); color: var(--color-white); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: var(--spacing-md); }
+        .cs-title { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); line-height: 1; letter-spacing: 2px; text-transform: uppercase; margin-bottom: var(--spacing-md); color: var(--color-black); }
+        .cs-subtitle { font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.5; color: var(--color-gray-700); max-width: 700px; }
+
+        .cs-meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-xl); padding: var(--spacing-2xl) 5%; background-color: var(--color-white); border-bottom: 1px solid var(--color-gray-200); }
+        .cs-meta-item { display: flex; flex-direction: column; gap: var(--spacing-xs); }
+        .cs-meta-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: var(--color-gray-500); }
+        .cs-meta-value { font-size: 1.1rem; font-weight: 500; color: var(--color-black); }
+
+        .case-study-body { max-width: 900px; margin: 0 auto; padding: var(--spacing-4xl) 5%; }
+        
+        .cs-section { margin-bottom: var(--spacing-4xl); }
+        .cs-section-title { font-family: var(--font-display); font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1; letter-spacing: 1px; color: var(--color-black); margin-bottom: var(--spacing-xl); padding-bottom: var(--spacing-md); border-bottom: 2px solid var(--color-black); display: inline-block; }
+        .cs-section-subtitle { font-size: 1.5rem; font-weight: 700; color: var(--color-gray-900); margin: var(--spacing-xl) 0 var(--spacing-sm); }
+        
+        .cs-text { font-size: 1.1rem; line-height: 1.8; color: var(--color-gray-800); margin-bottom: var(--spacing-lg); }
+        
+        .cs-list { margin-bottom: var(--spacing-lg); padding-left: var(--spacing-xl); }
+        .cs-list li { font-size: 1.1rem; line-height: 1.8; color: var(--color-gray-800); margin-bottom: var(--spacing-sm); position: relative; }
+        .cs-list li::before { content: ''; position: absolute; left: -1.5rem; top: 0.6rem; width: 8px; height: 8px; background-color: var(--color-black); border-radius: 50%; }
+
+        .cs-highlight-box { background-color: var(--color-gray-100); border-left: 4px solid var(--color-black); padding: var(--spacing-xl); margin: var(--spacing-2xl) 0; }
+        .cs-highlight-box h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: var(--spacing-sm); }
+
+        .cs-image { width: 100%; height: auto; margin: var(--spacing-2xl) 0 0; border: 1px solid var(--color-gray-200); border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .cs-image-caption { text-align: center; font-size: 0.85rem; color: var(--color-gray-500); margin-top: var(--spacing-sm); margin-bottom: var(--spacing-2xl); font-style: italic; }
+
+        .cs-tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-md); margin-top: var(--spacing-lg); }
+        .cs-tech-card { background-color: var(--color-white); border: 1px solid var(--color-gray-200); padding: var(--spacing-lg); text-align: center; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+        .cs-tech-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .cs-tech-name { font-weight: 600; font-size: 1.1rem; color: var(--color-black); }
+        
+        table { width: 100%; border-collapse: collapse; margin: var(--spacing-lg) 0; }
+        th, td { border: 1px solid var(--color-gray-200); padding: var(--spacing-md); text-align: left; }
+        th { background-color: var(--color-gray-100); font-weight: 600; }
+
+        .cs-hide-in-modal { display: block; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container" style="display: flex; justify-content: space-between; width: 100%; max-width: 1400px; margin: 0 auto;">
+            <a href="index.html#hero" class="nav-logo">
+                <img src="images/msstudio.webp" alt="MsStudio logo" class="brand-logo-image">
+                <span class="brand-logo-text">MhSaad</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#portfolio" class="nav-link">Back to Work</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="case-study-hero cs-hide-in-modal">
+        <div class="cs-hero-content">
+            <span class="cs-badge">Academic Case Study</span>
+            <h1 class="cs-title">PaperShare</h1>
+            <p class="cs-subtitle">A full-stack marketplace for students and researchers to share past papers and academic resources, featuring a gamified reputation system and real-time collaboration.</p>
+        </div>
+    </header>
+
+    <div class="cs-meta-grid cs-hide-in-modal">
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">Full Stack Developer</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Domain</span>
+            <span class="cs-meta-value">EdTech & Community</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Tech Stack</span>
+            <span class="cs-meta-value">React, Node.js, MongoDB, Socket.io, Cloudinary</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Platform</span>
+            <span class="cs-meta-value">Web Application</span>
+        </div>
+    </div>
+
+    <main class="case-study-body">
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">About Project</h2>
+            <p class="cs-text">PaperShare is a dynamic, full-stack marketplace built exclusively for students, educators, and researchers to share past papers, study notes, and critical academic resources. Developed to democratize academic knowledge, the platform solves the chronic issue of scattered, inaccessible study materials across universities. Traditional academic repositories are often siloed, forcing students to rely on disjointed WhatsApp groups or outdated university forums to find past exams. PaperShare centralizes this by offering a robust resource library where documents are neatly categorized by university, department, and course. To encourage high-quality contributions, the platform heavily emphasizes community-driven content through a gamified reputation system. Users earn points and unique badges by uploading helpful resources and receiving upvotes from peers, naturally surfacing the best materials to the top of the search results.</p>
+            <p class="cs-text">Beyond static file sharing, PaperShare acts as a collaborative hub featuring real-time interactions. The integrated chat system allows users to connect with peers and mentors instantly to discuss complex topics or request specific papers. On the backend, PaperShare leverages a modern MERN stack. The frontend is built with React and Vite, utilizing route-based code-splitting for blazing-fast performance. The backend is powered by Node.js and Express, connected to a MongoDB database to handle complex user relationships and upvote logic. Secure, permanent file storage for heavy PDF uploads and profile avatars is seamlessly managed via Cloudinary. Administrative moderation tools are also built-in, enabling platform operators to review pending uploads, manage user reports, and maintain the integrity of the academic repository. Overall, PaperShare transforms the solitary struggle of exam preparation into a vibrant, gamified community effort.</p>
+        </section>
+
+        <div class="cs-hide-in-modal">
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">The Challenge</h2>
+            <p class="cs-text">The primary technical challenge of PaperShare was balancing the handling of large file uploads (PDFs, images) with maintaining a highly responsive, real-time user interface. Uploading a 50MB past paper directly to a database is an anti-pattern that leads to severe performance degradation. Furthermore, building a real-time chat feature alongside a gamified leaderboard required careful state management to ensure that upvotes, new messages, and reputation points were reflected instantly across the UI without forcing expensive page reloads.</p>
+        </section>
+
+        <img src="images/papershare/Dashboard.avif" alt="PaperShare Dashboard" class="cs-image">
+        <div class="cs-image-caption">The gamified dashboard where users track their uploads, reputation score, and community standing.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Technical Implementation</h2>
+            <div class="cs-highlight-box">
+                <h4>Core Architecture Highlights</h4>
+                <ul class="cs-list">
+                    <li><strong>Serverless Media Storage:</strong> Integrated Cloudinary SDK into the Express backend. Instead of storing files locally, the Node.js API streams multipart form data directly to Cloudinary, returning a permanent, optimized CDN URL to the MongoDB database.</li>
+                    <li><strong>Real-time Collaboration:</strong> Implemented Socket.io for the chat infrastructure. When a user sends a message, it is emitted via WebSockets for instant delivery to the recipient while simultaneously being committed to MongoDB for persistence.</li>
+                    <li><strong>Gamification Engine:</strong> Engineered a MongoDB aggregation pipeline to calculate the Leaderboard. The system ranks users dynamically based on a composite score derived from the number of upvotes received, resources uploaded, and community engagement.</li>
+                    <li><strong>Security & Authentication:</strong> Implemented secure JSON Web Tokens (JWT) stored in HttpOnly cookies, combined with bcryptjs for password hashing. Protected API routes ensure that only authenticated users can upload or download sensitive academic materials.</li>
+                </ul>
+            </div>
+        </section>
+
+        <img src="images/papershare/Papers_page.avif" alt="Papers Library" class="cs-image">
+        <div class="cs-image-caption">The robust resource library featuring filtering by university, department, and course code.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Final Outcome</h2>
+            <p class="cs-text">PaperShare successfully bridges the gap between students needing reliable study materials and top performers willing to share their knowledge. By gamifying the contribution process, the platform naturally incentivizes high-quality uploads, creating a self-sustaining ecosystem of academic resources. The application is fully optimized for serverless deployment on Vercel, ensuring high availability and scalable performance during critical exam seasons.</p>
+        </section>
+
+        </div>
+    </main>
+</body>
+</html>

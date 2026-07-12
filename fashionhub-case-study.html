@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FashionHub Case Study - E-commerce Fashion Experience">
+    <title>FashionHub Case Study | Muhammad Saad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="images/msstudio.webp">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Case Study Specific Styles */
+        .case-study-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-gray-200) 100%);
+            padding: 120px var(--spacing-xl) var(--spacing-2xl);
+            overflow: hidden;
+            border-bottom: 1px solid var(--color-gray-300);
+        }
+
+        .cs-hero-content {
+            max-width: 900px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .cs-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-white);
+            background-color: var(--color-black);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-title {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 8vw, 7rem);
+            line-height: 0.9;
+            letter-spacing: -1px;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--color-gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .cs-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+
+        .cs-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .cs-meta-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-gray-500);
+        }
+
+        .cs-meta-value {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-black);
+        }
+
+        .case-study-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-4xl) var(--spacing-xl);
+        }
+
+        .cs-section {
+            margin-bottom: var(--spacing-4xl);
+        }
+
+        .cs-section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            line-height: 1;
+            letter-spacing: 1px;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-black);
+            display: inline-block;
+        }
+
+        .cs-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-gray-800);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cs-list {
+            margin-bottom: var(--spacing-lg);
+            padding-left: var(--spacing-xl);
+        }
+
+        .cs-list li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-gray-800);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+        }
+
+        .cs-list li::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.6rem;
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-black);
+            border-radius: 50%;
+        }
+
+        .cs-highlight-box {
+            background-color: var(--color-gray-100);
+            border-left: 4px solid var(--color-black);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .cs-highlight-box h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cs-image {
+            width: 100%;
+            height: auto;
+            margin: var(--spacing-2xl) 0;
+            border: 1px solid var(--color-gray-200);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .cs-image-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
+            margin-top: -1.5rem;
+            margin-bottom: var(--spacing-2xl);
+            font-style: italic;
+        }
+
+        .cs-tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .cs-tech-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-200);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .cs-tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .cs-tech-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--color-black);
+        }
+        
+        .cs-quote {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            line-height: 1.2;
+            color: var(--color-black);
+            text-align: center;
+            margin: var(--spacing-3xl) 0;
+            padding: 0 var(--spacing-xl);
+            position: relative;
+        }
+        
+        .cs-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--color-gray-300);
+            position: absolute;
+            top: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .case-study-hero {
+                min-height: 50vh;
+                padding-top: 100px;
+            }
+            .cs-section-title {
+                border-bottom-width: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html#hero" class="nav-logo" aria-label="MsStudio">
+                <img src="images/msstudio.webp" alt="MsStudio logo" class="brand-logo-image">
+                <span class="brand-logo-text">MhSaad</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#portfolio" class="nav-link">Back to Work</a></li>
+            </ul>
+            <div class="nav-meta">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="case-study-hero">
+        <div class="cs-hero-content">
+            <span class="cs-badge">Comprehensive Case Study</span>
+            <h1 class="cs-title">FashionHub</h1>
+            <p class="cs-subtitle">Architecting a resilient, hybrid e-commerce ecosystem leveraging customized PHP patterns, strict SQL security, and Node.js microservices for PCI-compliant checkout experiences.</p>
+        </div>
+    </header>
+
+    <!-- Meta Info -->
+    <div class="cs-meta-grid">
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">Lead Full Stack Engineer</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Category</span>
+            <span class="cs-meta-value">E-commerce / Retail</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Core Technologies</span>
+            <span class="cs-meta-value">PHP 8, MySQL, Node.js, Express, Stripe SDK</span>
+        </div>
+        <div class="cs-meta-item">
+            <span class="cs-meta-label">Authentication</span>
+            <span class="cs-meta-value">OAuth 2.0 (Google, Facebook)</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="case-study-body">
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Executive Summary</h2>
+            <p class="cs-text">FashionHub was developed as a direct response to the limitations found in bloated, out-of-the-box CMS solutions. The objective was to build an ultra-fast, bespoke e-commerce platform that bridged the gap between aesthetic product discovery and rigorous backend retail operations.</p>
+            <p class="cs-text">Serving as a comprehensive end-to-end retail ecosystem, FashionHub manages everything from dynamic catalog rendering and secure user authentication to persistent shopping carts and a streamlined, PCI-compliant payment integration via Stripe.</p>
+            <p class="cs-text">Constructed entirely from the ground up with a robust API-first PHP architecture, backed by a highly normalized MySQL database, and featuring a dedicated Node.js microservice for specialized payment handling, FashionHub demonstrates the immense capability of hybrid stacks in achieving top-tier performance and security in modern online retail.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">The Problem Space</h2>
+            <p class="cs-text">Many contemporary monolithic e-commerce templates provide rigid architectures that are notoriously difficult to scale, secure, or customize heavily without encountering severe performance bottlenecks. The challenge with FashionHub was to build a highly adaptable framework that could securely handle complex data relationships without relying on generic CMS plugins. Specific systemic challenges included:</p>
+            <ul class="cs-list">
+                <li><strong>Decoupling Logic from UI:</strong> Creating an API-first backend to completely decouple the frontend rendering logic from server-side operations, allowing for asynchronous, SPA-like interactions.</li>
+                <li><strong>Complex Inventory Modeling:</strong> Designing an intuitive yet powerful Admin Panel for real-time inventory management, order state tracking, and customer relationship monitoring.</li>
+                <li><strong>Frictionless Authentication:</strong> Implementing secure OAuth 2.0 social authentication flows (Google and Facebook) alongside traditional login without exposing the platform to session hijacking.</li>
+                <li><strong>Payment Security:</strong> Integrating a secure, PCI-compliant checkout workflow using Stripe while preventing the PHP application from directly handling sensitive credit card tokens.</li>
+            </ul>
+        </section>
+
+        <img src="images/FashionHub/Main_page.webp" alt="FashionHub Storefront" class="cs-image">
+        <div class="cs-image-caption">The dynamic fashion storefront optimized for user engagement and high-speed asset delivery.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Product Vision & Strategy</h2>
+            <p class="cs-text">The vision was definitive: build a remarkably fast, relentlessly secure, and easily navigable online store. By adopting an API-first mentality for the custom PHP backend, the platform delivers optimized JSON payloads to the frontend. This drastic reduction in synchronous page reloads provides a silky-smooth user experience synonymous with enterprise-grade web applications.</p>
+            <div class="cs-highlight-box">
+                <h4>Core Philosophy: Security by Design</h4>
+                <p>Security and user experience are not mutually exclusive. From enforcing parameterized SQL statements at the database abstraction layer to seamless OAuth integrations and HttpOnly session cookies, every feature was engineered to build absolute consumer trust while drastically reducing friction in the purchasing funnel.</p>
+            </div>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">System Architecture & Tech Stack</h2>
+            <p class="cs-text">FashionHub utilizes a distributed, service-oriented approach to meticulously manage different domain concerns, ensuring that no single component becomes a catastrophic bottleneck:</p>
+            
+            <div class="cs-tech-grid">
+                <div class="cs-tech-card"><div class="cs-tech-name">PHP 8.0+</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">MySQL / MariaDB</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">Node.js & Express</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">Stripe API</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">OAuth 2.0</div></div>
+                <div class="cs-tech-card"><div class="cs-tech-name">Composer & npm</div></div>
+            </div>
+
+            <p class="cs-text" style="margin-top: 2rem;"><strong>The API Nerve Center (`api/`):</strong> Rather than generating raw HTML, the PHP backend acts as a RESTful interface. Endpoints such as `get_products.php`, `update_cart.php`, and `create_order.php` validate incoming requests via strict schemas, execute business logic, and return standard JSON responses.</p>
+            <p class="cs-text"><strong>The Payment Microservice:</strong> To handle the complex cryptographic and webhook requirements of Stripe securely, a dedicated Node.js server (`node.js`) was implemented. This service processes payment intents and webhooks entirely decoupled from the core PHP application, minimizing the attack surface and ensuring PCI compliance.</p>
+        </section>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Database & Data Modeling</h2>
+            <p class="cs-text">A rigorously normalized MySQL schema forms the unbreakable foundation of the platform. Key entities include Users, Products, Variants, Orders, Order Items, and Addresses.</p>
+            <p class="cs-text">This relational model ensures that when a cart converts to an order, it is executed with absolute transactional integrity. Even if a product's price or description changes in the future, the historical order records the exact snapshot of pricing and metadata at the precise moment of purchase, a critical requirement for financial auditing.</p>
+        </section>
+
+        <img src="images/FashionHub/Shop_page.webp" alt="Product Discovery" class="cs-image">
+        <div class="cs-image-caption">Faceted product discovery and categorized navigation powered by asynchronous API calls.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Security & Authentication Subsystems</h2>
+            <p class="cs-text">Security was approached holistically, anticipating modern web vulnerabilities:</p>
+            <ul class="cs-list">
+                <li><strong>OAuth 2.0 Integration:</strong> Secure social logins leveraging `league/oauth2-google` and `league/oauth2-facebook` streamline user onboarding while offloading password management risks.</li>
+                <li><strong>Environment Management:</strong> Strict isolation of infrastructure secrets using `vlucas/phpdotenv`. Credentials are never hardcoded or committed to version control.</li>
+                <li><strong>SQL Injection Prevention:</strong> 100% utilization of PDO (PHP Data Objects) prepared statements. Raw variables are never concatenated into SQL strings under any circumstance.</li>
+                <li><strong>Session Hardening:</strong> Sessions are secured with strict cookie configurations, mitigating Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF) vectors.</li>
+            </ul>
+        </section>
+        
+        <div class="cs-quote">An e-commerce platform's true strength lies not just in its storefront, but in the unyielding integrity of its admin tooling and payment security.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Administrative Operations</h2>
+            <p class="cs-text">Operating entirely behind a strict authorization wall, FashionHub features a formidable administrative dashboard. Store operators can effortlessly manage user roles, audit complex order histories, execute refunds, and update product catalogs in real-time.</p>
+            <p class="cs-text">This absolute separation of administrative business logic ensures that the consumer-facing application remains exceptionally lightweight and focused purely on speed and conversion optimization.</p>
+        </section>
+        
+        <img src="images/FashionHub/Admin_panel.webp" alt="Admin Panel" class="cs-image">
+        <div class="cs-image-caption">The dedicated administrative interface for total control over inventory, users, and financials.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Engineering Challenges & Solutions</h2>
+            <p class="cs-text"><strong>The Challenge:</strong> Integrating a modern Stripe checkout flow into a traditional PHP session architecture posed a unique synchronization challenge. The application needed to initiate a secure transaction without risking PCI compliance violations by passing raw card data through the PHP server.</p>
+            <p class="cs-text"><strong>The Solution:</strong> I engineered a hybrid, asynchronous approach. The frontend collects intent via the PHP session, which then securely requests a specialized payload from the Node.js payment microservice to generate a `client_secret`. Finally, the application utilizes Stripe Elements entirely on the client-side to finalize the transaction. The Node server then listens for asynchronous webhooks from Stripe to verify payment completion before instructing the PHP database to mark the order as 'Paid'.</p>
+        </section>
+        
+        <img src="images/FashionHub/Cart.webp" alt="Shopping Cart Flow" class="cs-image">
+        <div class="cs-image-caption">Persistent shopping cart with asynchronous updates calculating exact totals and taxes.</div>
+
+        <section class="cs-section">
+            <h2 class="cs-section-title">Project Outcome & Impact</h2>
+            <p class="cs-text">FashionHub stands as a comprehensive, highly scalable e-commerce framework. It successfully marries the battle-tested reliability and rapid deployment capabilities of PHP with the asynchronous, high-performance power of Node.js for specialized payment operations.</p>
+            <p class="cs-text">The resulting architecture is a highly responsive, fiercely secure, and easily administrable fashion marketplace that delivers a premium shopping experience. It validates the capability to build bespoke enterprise-grade solutions without the massive overhead of traditional commercial monoliths.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html#hero" class="footer-logo-link footer-brand-head" aria-label="Back to Hero">
+                        <span class="footer-name">MHSAAD</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/m-saad-1" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/muhammad-saad24/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+                </div>
+                <div class="footer-copy">
+                    <span>&copy; 2026 Muhammad Saad. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Init theme script
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            const sunIcon = themeToggle?.querySelector('.sun-icon');
+            const moonIcon = themeToggle?.querySelector('.moon-icon');
+            
+            if (!themeToggle || !sunIcon || !moonIcon) return;
+
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            const setTheme = (isDark) => {
+                if (isDark) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
+            };
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                setTheme(true);
+            } else {
+                setTheme(false);
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.hasAttribute('data-theme');
+                setTheme(!isDark);
+                localStorage.setItem('portfolio-theme', !isDark ? 'dark' : 'light');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -255,6 +255,11 @@ function initProjectModal() {
     const modalOverlay = modal.querySelector('.modal-overlay');
     const modalClose = modal.querySelector('.modal-close');
     const projectCards = document.querySelectorAll('.project-card');
+    const modalMainView = modal.querySelector('.modal-main-view');
+    const modalDetailsView = modal.querySelector('.modal-details-view');
+    const learnMoreBtn = modal.querySelector('.learn-more-btn');
+    const modalBackBtn = modal.querySelector('.modal-back-btn');
+    const modalCaseStudyContent = modal.querySelector('.modal-details-content');
     const modalTitle = modal.querySelector('.modal-title');
     const modalTagline = modal.querySelector('.modal-tagline');
     const modalPlatformIcon = modal.querySelector('.modal-platform-icon');
@@ -276,21 +281,22 @@ function initProjectModal() {
             title: 'DevBug',
             tagline: 'Developer Community Platform',
             icon: '🐞',
-            description: 'A developer-centric collaboration platform with discussion, project sharing, and engagement workflows designed for modern product teams.',
+            description: 'A developer-centric collaboration platform with discussion, project sharing, and engagement workflows designed for modern product teams. DevBug enables developers to connect, share their ongoing projects, ask for help on complex bugs, and build a portfolio of their contributions. The platform integrates seamlessly with GitHub, allowing users to import repositories, track issue resolution, and showcase their technical expertise within an active, supportive community.',
             tech: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript', 'highlight.js'],
             thumbnail: 'images/DevBug/Thumbnail.webp',
             images: [
-                'images/DevBug/devbug1.webp',
-                'images/DevBug/devbug2.webp',
-                'images/DevBug/devbug3.webp',
-                'images/DevBug/devbug4.webp',
-                'images/DevBug/devbug5.webp',
-                'images/DevBug/devbug6.webp',
-                'images/DevBug/devbug7.webp',
-                'images/DevBug/devbug8.webp',
-                'images/DevBug/devbug9.webp'
+                'images/DevBug/Mainpage.webp',
+                'images/DevBug/Dashboard.webp',
+                'images/DevBug/Bugs.webp',
+                'images/DevBug/Solutions.webp',
+                'images/DevBug/Leaderboard.webp',
+                'images/DevBug/Chat.webp',
+                'images/DevBug/User_profile.webp',
+                'images/DevBug/Registration.webp',
+                'images/DevBug/About.webp'
             ],
             link: 'https://devbug.gt.tc',
+            caseStudy: 'devbug-case-study.html',
             github: 'https://github.com/m-saad-1/DevBug'
         },
         2: {
@@ -298,43 +304,45 @@ function initProjectModal() {
             tagline: 'E-commerce Platform',
             icon: '🛍️',
             iconImage: 'images/Fashionhub.webp',
-            description: 'A fashion storefront with product discovery, promotional storytelling, and a conversion-focused shopping interface.',
+            description: 'A fashion storefront with product discovery, promotional storytelling, and a conversion-focused shopping interface. It provides an elegant, modern shopping experience tailored for apparel brands. With features like dynamic filtering, real-time inventory tracking, seamless cart management, and a robust admin dashboard, FashionHub ensures both customers and administrators have a frictionless journey from product discovery to final checkout.',
             tech: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript', 'Node.js + Express', 'Stripe SDK'],
             thumbnail: 'images/FashionHub/Thumbnail.webp',
             images: [
-                'images/FashionHub/fashionhub1.webp',
-                'images/FashionHub/fashionhub2.webp',
-                'images/FashionHub/fashionhub3.webp',
-                'images/FashionHub/fashionhub4.webp',
-                'images/FashionHub/fashionhub5.webp',
-                'images/FashionHub/fashionhub7.webp',
-                'images/FashionHub/fashionhub8.webp',
-                'images/FashionHub/fashionhub9.webp'
+                'images/FashionHub/Main_page.webp',
+                'images/FashionHub/Shop_page.webp',
+                'images/FashionHub/Cart.webp',
+                'images/FashionHub/Signup.webp',
+                'images/FashionHub/Dashboard.webp',
+                'images/FashionHub/Admin_panel.webp',
+                'images/FashionHub/About.webp',
+                'images/FashionHub/Contact.webp'
             ],
             link: 'https://fashion-hub.gt.tc',
+            caseStudy: 'fashionhub-case-study.html',
             github: 'https://github.com/m-saad-1/Men-Fashion-Hub'
         },
         3: {
-            title: 'Personal Operating System (Personal OS)',
+            title: 'Progress Operating System (Progress OS)',
             tagline: 'Productivity Dashboard',
             icon: '📋',
             iconImage: 'images/personalOS.webp',
-            description: 'A personal operating system for workflow management with focused modules for planning, tracking, and execution.',
+            description: 'A progress operating system for workflow management with focused modules for planning, tracking, and execution. Designed to replace fragmented productivity tools, Progress OS unifies your tasks, habits, and long-term goals into a single cohesive dashboard. It features deep analytics, daily review mechanisms, and Pomodoro-style time tracking to help you maintain deep work focus and systematically achieve your objectives.',
             tech: ['Electron', 'Node.js', 'SQLite', 'React 18', 'TypeScript', 'Vite', 'Tailwind CSS'],
-            thumbnail: 'images/PersonalOS/thumbnail.webp',
+            thumbnail: 'images/PersonalOS/thumbnail.avif',
             images: [
-                'images/PersonalOS/PersonalOS 1.webp',
-                'images/PersonalOS/PersonalOS 2.webp',
-                'images/PersonalOS/PersonalOS 3.webp',
-                'images/PersonalOS/PersonalOS 4.webp',
-                'images/PersonalOS/PersonalOS 5.webp',
-                'images/PersonalOS/PersonalOS 6.webp',
-                'images/PersonalOS/PersonalOS 7.webp',
-                'images/PersonalOS/PersonalOS 8.webp',
-                'images/PersonalOS/PersonalOS 9.webp',
-                'images/PersonalOS/PersonalOS 10.webp'
+                'images/PersonalOS/Dashboard.webp',
+                'images/PersonalOS/Task_page.webp',
+                'images/PersonalOS/Goals_page.webp',
+                'images/PersonalOS/Habits_page.webp',
+                'images/PersonalOS/Time_management_page.webp',
+                'images/PersonalOS/Notes_page.webp',
+                'images/PersonalOS/Analytics_page.webp',
+                'images/PersonalOS/Reviews_page.webp',
+                'images/PersonalOS/Archive_page.webp',
+                'images/PersonalOS/Settings.webp'
             ],
-            link: 'https://personal-os.netlify.app',
+            link: 'https://progress-os.netlify.app',
+            caseStudy: 'progress-os-case-study.html',
             github: 'https://github.com/m-saad-1/Progress-Operating-System'
         },
         4: {
@@ -342,7 +350,7 @@ function initProjectModal() {
             tagline: 'Social Image Sharing App',
             icon: '🖼️',
             iconImage: 'images/visualshare.webp',
-            description: 'A visual-first social experience focused on streamlined sharing, feed clarity, and strong content presentation.',
+            description: 'A visual-first social experience focused on streamlined sharing, feed clarity, and strong content presentation. Inspired by minimalist design principles, VisualShare allows creators to upload high-resolution imagery and curate their portfolios without the noise of typical social media algorithms. It includes real-time interactions, custom mood boards, and secure cloud storage powered by Firebase.',
             tech: ['React', 'Firebase', 'Storage', 'Realtime DB'],
             thumbnail: 'images/VisualShare/thumbnail.webp',
             images: [
@@ -359,19 +367,69 @@ function initProjectModal() {
             title: 'Apple Leaf Disease Detection System',
             tagline: 'Agritech Computer Vision',
             icon: '🌿',
-            description: 'A machine-learning concept focused on identifying crop health issues from image samples to support faster field-level diagnostics.',
+            description: 'A machine-learning concept focused on identifying crop health issues from image samples to support faster field-level diagnostics. Utilizing advanced convolutional neural networks and Grad-CAM explainability, this tool allows farmers to upload photos of apple leaves and receive instant, highly accurate disease classifications. It bridges the gap between complex AI models and accessible agricultural solutions.',
             tech: ['Python', 'TensorFlow / Keras', 'Flask', 'OpenCV', 'EfficientNet', 'Grad-CAM', 'NumPy'],
             thumbnail: 'images/leaf_disease_detection/thumbnail.webp',
             images: [
                 'images/leaf_disease_detection/thumbnail.webp',
-                'images/leaf_disease_detection/leaf_detection1.webp',
-                'images/leaf_disease_detection/leaf_detection2.webp',
-                'images/leaf_disease_detection/leaf_detection4.webp',
-                'images/leaf_disease_detection/3.webp'
+                'images/leaf_disease_detection/Uplaodimage_and_predictedimageanddetails.webp',
+                'images/leaf_disease_detection/Diseasedimage_prediction.webp',
+                'images/leaf_disease_detection/Healthyimageprediction.webp',
+                'images/leaf_disease_detection/Gradcam_attentionmapanalysis_Explainability.webp'
             ],
             link: '',
+            caseStudy: 'apple-leaf-case-study.html',
             github: 'https://github.com/m-saad-1/Apple_leaf_disease_detection'
+        },
+        6: {
+            title: 'Broady',
+            tagline: 'Multi-Brand Fashion Marketplace',
+            icon: '🛍️',
+            description: 'A production-level multi-brand fashion marketplace featuring product discovery, brand dashboards, orders, returns, and event-driven operations. Built with a robust microservices-inspired architecture, Broady handles complex split-cart checkouts, cross-brand inventory sync, and real-time faceted search using Meilisearch. It provides independent boutiques with powerful analytics while offering consumers a seamless, unified shopping experience.',
+            tech: ['Next.js', 'Express', 'Prisma', 'PostgreSQL', 'Redis'],
+            thumbnail: 'images/Broady/Broady/thumbnail.avif',
+            images: [
+                'images/Broady/Broady/Main_page.avif',
+                'images/Broady/Broady/Catalog_page.avif',
+                'images/Broady/Broady/Products_page.avif',
+                'images/Broady/Broady/Cart.avif',
+                'images/Broady/Broady/Checkout.avif',
+                'images/Broady/Broady/Customer_dashboard.avif',
+                'images/Broady/Broady/Orde_details.avif',
+                'images/Broady/Broady/Brand_Dashabord.avif',
+                'images/Broady/Broady/Ingestion_control.avif',
+                'images/Broady/Broady/Brand_operations_request.avif',
+                'images/Broady/Broady/Admin_pannel.avif',
+                'images/Broady/Broady/Admin_brand_dashboard.avif',
+                'images/Broady/Broady/Admin_brands_management.avif',
+                'images/Broady/Broady/exchangerequests,refund,deliveryfailure,damagedisputes.avif',
+                'images/Broady/Broady/Login_registration_page.avif'
+            ],
+            link: '',
+            caseStudy: 'broady-case-study.html',
+            github: 'https://github.com/m-saad-1/broady'
+        },
+        7: {
+            title: 'PaperShare',
+            tagline: 'Academic Research Platform',
+            icon: '📄',
+            description: 'A platform designed to simplify the discovery, sharing, and discussion of academic research papers. PaperShare provides a unified interface for students, researchers, and academics to request hard-to-find papers, upload documents, and engage in real-time academic discourse. Features include a dynamic leaderboard, interactive chat, and a highly organized paper repository.',
+            tech: ['Next.js', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'WebSockets'],
+            thumbnail: 'images/papershare/Thumbnail.png',
+            images: [
+                'images/papershare/Main_page.avif',
+                'images/papershare/Dashboard.avif',
+                'images/papershare/Leaderboard.avif',
+                'images/papershare/Papers_page.avif',
+                'images/papershare/Chat_page.avif',
+                'images/papershare/Requested_papers.avif',
+                'images/papershare/Upload.avif'
+            ],
+            link: 'https://papershare.vercel.app',
+            caseStudy: 'papershare-case-study.html',
+            github: 'https://github.com/m-saad-1/papershare'
         }
+
     };
 
     let currentCarouselIndex = 0;
@@ -520,6 +578,19 @@ function initProjectModal() {
             modalLive.style.display = 'none';
         }
 
+        // Handle Learn More / Case Study
+        const modalCaseStudy = modal.querySelector('.modal-casestudy');
+        if (project.caseStudy) {
+            if (modalCaseStudy) {
+                modalCaseStudy.href = project.caseStudy;
+                modalCaseStudy.style.display = 'inline-flex';
+            }
+            if (learnMoreBtn) learnMoreBtn.style.display = 'inline-flex';
+        } else {
+            if (modalCaseStudy) modalCaseStudy.style.display = 'none';
+            if (learnMoreBtn) learnMoreBtn.style.display = 'none';
+        }
+
         if (project.github) {
             modalGithub.href = project.github;
             modalGithub.style.display = 'inline-flex';
@@ -635,6 +706,13 @@ function initProjectModal() {
         lightboxImage.removeAttribute('src');
         lightboxZoomed = false;
         lightboxImage.classList.remove('zoomed');
+        
+        // Reset pan/zoom state
+        currentZoom = 1;
+        panX = 0;
+        panY = 0;
+        updateTransform();
+
         lightbox.classList.add('active');
         lightbox.setAttribute('aria-hidden', 'false');
 
@@ -682,19 +760,28 @@ function initProjectModal() {
         lightboxImage.classList.remove('zoomed');
         lightboxImage.src = '';
         lightboxStage.classList.remove('loaded');
-        wheelZoomAccumulator = 0;
-        pendingZoomState = false;
-        if (lightboxZoomFrame) {
-            cancelAnimationFrame(lightboxZoomFrame);
-            lightboxZoomFrame = 0;
-        }
+        
+        currentZoom = 1;
+        panX = 0;
+        panY = 0;
+        updateTransform();
     }
 
-    // Keyboard navigation for carousel
+    // Keyboard navigation for carousel & lightbox
     document.addEventListener('keydown', (e) => {
         if (!modal.classList.contains('active')) return;
-        if (e.key === 'ArrowLeft') previousSlide();
-        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') {
+            previousSlide();
+            if (lightbox.classList.contains('active') && currentProject && currentProject.images[currentCarouselIndex]) {
+                openLightbox(currentProject.images[currentCarouselIndex]);
+            }
+        }
+        if (e.key === 'ArrowRight') {
+            nextSlide();
+            if (lightbox.classList.contains('active') && currentProject && currentProject.images[currentCarouselIndex]) {
+                openLightbox(currentProject.images[currentCarouselIndex]);
+            }
+        }
     });
 
     window.addEventListener('resize', () => {
@@ -723,39 +810,110 @@ function initProjectModal() {
         lightboxClose.addEventListener('click', closeLightbox);
     }
 
+    // Lightbox Next/Prev Buttons
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
+    
+    if (lightboxPrev) {
+        lightboxPrev.addEventListener('click', (event) => {
+            event.stopPropagation();
+            previousSlide();
+            if (currentProject && currentProject.images[currentCarouselIndex]) {
+                openLightbox(currentProject.images[currentCarouselIndex]);
+            }
+        });
+    }
+
+    if (lightboxNext) {
+        lightboxNext.addEventListener('click', (event) => {
+            event.stopPropagation();
+            nextSlide();
+            if (currentProject && currentProject.images[currentCarouselIndex]) {
+                openLightbox(currentProject.images[currentCarouselIndex]);
+            }
+        });
+    }
+
     if (lightbox) {
         lightbox.addEventListener('click', (event) => {
-            if (event.target === lightbox) {
+            if (event.target === lightbox || event.target === lightboxStage) {
                 closeLightbox();
             }
         });
     }
 
+    // Advanced Pan & Zoom Logic
+    let currentZoom = 1;
+    let isDragging = false;
+    let startX = 0, startY = 0;
+    let panX = 0, panY = 0;
+    let initialPinchDistance = null;
+
+    function updateTransform() {
+        if (lightboxImage) {
+            lightboxImage.style.transform = `translate(${panX}px, ${panY}px) scale(${currentZoom})`;
+        }
+    }
+
     if (lightboxImage) {
-        lightboxImage.addEventListener('click', (event) => {
+        // Double click to zoom
+        lightboxImage.addEventListener('dblclick', (event) => {
             event.stopPropagation();
-            lightboxZoomed = !lightboxZoomed;
-            lightboxImage.classList.toggle('zoomed', lightboxZoomed);
+            if (currentZoom > 1) {
+                currentZoom = 1;
+                panX = 0;
+                panY = 0;
+            } else {
+                currentZoom = 2.5;
+            }
+            updateTransform();
         });
 
+        // Mouse Wheel Zoom
         lightboxImage.addEventListener('wheel', (event) => {
             if (!lightbox || !lightbox.classList.contains('active')) return;
             event.preventDefault();
-            wheelZoomAccumulator += event.deltaY;
-
-            if (Math.abs(wheelZoomAccumulator) < 48) return;
-
-            pendingZoomState = wheelZoomAccumulator < 0;
-            wheelZoomAccumulator = 0;
-
-            if (lightboxZoomFrame) return;
-
-            lightboxZoomFrame = requestAnimationFrame(() => {
-                lightboxZoomFrame = 0;
-                lightboxZoomed = pendingZoomState;
-                lightboxImage.classList.toggle('zoomed', lightboxZoomed);
-            });
+            
+            const zoomAmount = -event.deltaY * 0.005;
+            const newZoom = Math.min(Math.max(0.5, currentZoom + zoomAmount), 10); // clamp zoom 0.5x to 10x
+            
+            // Zoom towards pointer
+            const rect = lightboxImage.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+            
+            panX -= mouseX / currentZoom * (newZoom - currentZoom);
+            panY -= mouseY / currentZoom * (newZoom - currentZoom);
+            
+            currentZoom = newZoom;
+            updateTransform();
         }, { passive: false });
+
+        // Pointer Events for Dragging and Pinching
+        lightboxImage.addEventListener('pointerdown', (event) => {
+            event.preventDefault();
+            isDragging = true;
+            startX = event.clientX - panX;
+            startY = event.clientY - panY;
+            lightboxImage.setPointerCapture(event.pointerId);
+        });
+
+        lightboxImage.addEventListener('pointermove', (event) => {
+            if (!isDragging) return;
+            panX = event.clientX - startX;
+            panY = event.clientY - startY;
+            updateTransform();
+        });
+
+        lightboxImage.addEventListener('pointerup', (event) => {
+            isDragging = false;
+            lightboxImage.releasePointerCapture(event.pointerId);
+        });
+
+        lightboxImage.addEventListener('pointercancel', (event) => {
+            isDragging = false;
+            lightboxImage.releasePointerCapture(event.pointerId);
+        });
     }
 
     slidesContainer.addEventListener('click', (event) => {
@@ -779,9 +937,54 @@ function initProjectModal() {
         goToSlide(currentCarouselIndex + 1);
     }
 
+    if (learnMoreBtn) {
+        learnMoreBtn.addEventListener('click', async () => {
+            if (!currentProject || !currentProject.caseStudy) return;
+            
+            modalMainView.style.display = 'none';
+            modalDetailsView.style.display = 'flex';
+            modalCaseStudyContent.innerHTML = '<p style="padding: 2rem; text-align: center;">Loading details...</p>';
+            
+            try {
+                const response = await fetch(currentProject.caseStudy);
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // Extract relevant sections (user requested to omit the hero and meta grid)
+                const style = doc.querySelector('style');
+                const body = doc.querySelector('.case-study-body');
+                
+                modalCaseStudyContent.innerHTML = '';
+                if (style) modalCaseStudyContent.appendChild(style.cloneNode(true));
+                if (body) modalCaseStudyContent.appendChild(body);
+                
+                // Reset scroll position
+                modal.querySelector('.modal-body').scrollTop = 0;
+                
+            } catch (error) {
+                console.error('Failed to load case study:', error);
+                modalCaseStudyContent.innerHTML = '<p style="padding: 2rem; text-align: center; color: red;">Failed to load project details.</p>';
+            }
+        });
+    }
+
+    if (modalBackBtn) {
+        modalBackBtn.addEventListener('click', () => {
+            modalDetailsView.style.display = 'none';
+            modalMainView.style.display = 'block';
+            modalCaseStudyContent.innerHTML = '';
+        });
+    }
+
     function openModal() {
+        if (modalMainView && modalDetailsView) {
+            modalMainView.style.display = 'block';
+            modalDetailsView.style.display = 'none';
+        }
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        modal.querySelector('.modal-body').scrollTop = 0;
     }
 
     function closeModal() {
