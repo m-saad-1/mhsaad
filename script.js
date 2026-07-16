@@ -59,9 +59,8 @@ function initTheme() {
     
     if (!themeToggle || !sunIcon || !moonIcon) return;
 
-    // Check for saved theme preference or OS preference
+    // Use saved preference only so the default stays light.
     const savedTheme = localStorage.getItem('portfolio-theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     const setTheme = (isDark) => {
         if (isDark) {
@@ -76,7 +75,7 @@ function initTheme() {
     };
 
     // Initialize theme
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    if (savedTheme === 'dark') {
         setTheme(true);
     } else {
         setTheme(false);
@@ -102,17 +101,19 @@ function initNavigation() {
     let navScrollFrame = 0;
 
     // Mobile menu toggle
-    navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-    });
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+    }
 
     // Close menu when clicking a link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
+            navToggle?.classList.remove('active');
+            navMenu?.classList.remove('active');
             document.body.style.overflow = '';
         });
     });
@@ -120,9 +121,9 @@ function initNavigation() {
     const logoLinks = document.querySelectorAll('.nav-logo, .footer-logo-link');
     logoLinks.forEach(link => {
         link.addEventListener('click', (event) => {
-            event.preventDefault();
             const hero = document.getElementById('hero');
             if (!hero) return;
+            event.preventDefault();
             hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
@@ -131,6 +132,32 @@ function initNavigation() {
     const navLinkMap = new Map(
         Array.from(navLinks).map(link => [link.getAttribute('href'), link])
     );
+
+    const setActiveNavLink = (targetHref) => {
+        navLinks.forEach(link => {
+            const isActive = link.getAttribute('href') === targetHref;
+            link.classList.toggle('active', isActive);
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
+    };
+
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    let currentPageHref = Array.from(navLinks).find(link => {
+        const href = link.getAttribute('href') || '';
+        return href.split('#')[0] === currentPath;
+    })?.getAttribute('href');
+
+    if (!currentPageHref && currentPath.endsWith('-case-study.html')) {
+        currentPageHref = 'case-studies.html';
+    }
+
+    if (currentPageHref) {
+        setActiveNavLink(currentPageHref);
+    }
 
     const updateNavbarState = () => {
         const currentScroll = window.pageYOffset;
@@ -155,8 +182,7 @@ function initNavigation() {
             const activeLink = navLinkMap.get(`#${id}`);
             if (!activeLink) return;
 
-            navLinks.forEach(link => link.classList.remove('active'));
-            activeLink.classList.add('active');
+            setActiveNavLink(activeLink.getAttribute('href'));
         });
     }, {
         rootMargin: '-35% 0px -45% 0px',
@@ -361,6 +387,7 @@ function initProjectModal() {
                 'images/VisualShare/visual4.webp'
             ],
             link: 'https://visualshare.gt.tc',
+            caseStudy: 'visualshare-case-study.html',
             github: 'https://github.com/m-saad-1/VisualShare'
         },
         5: {
@@ -1002,7 +1029,7 @@ function initProjectModal() {
 // SCROLL REVEAL ANIMATIONS
 // =========================================
 function initScrollReveal() {
-    const revealElements = document.querySelectorAll('.about-card, .skill-card, .contact-card, .project-card');
+    const revealElements = document.querySelectorAll('.about-card, .about-story-card, .skill-card, .contact-card, .project-card, .feature-card, .timeline-step, .faq-item, .case-study-card, .contact-link-card, .page-hero-panel, .page-stat, .expertise-pill');
 
     revealElements.forEach(el => {
         el.classList.add('reveal');
@@ -1031,9 +1058,9 @@ function initScrollReveal() {
     revealElements.forEach(el => observer.observe(el));
 
     // Stagger animation for grid items
-    const grids = document.querySelectorAll('.skills-grid, .portfolio-grid');
+    const grids = document.querySelectorAll('.skills-grid, .portfolio-grid, .feature-grid, .timeline-grid, .case-study-grid, .contact-links-list');
     grids.forEach(grid => {
-        const items = grid.querySelectorAll('.skill-card, .project-card');
+        const items = grid.querySelectorAll('.skill-card, .project-card, .feature-card, .timeline-step, .case-study-card, .contact-link-card');
         items.forEach((item, index) => {
             item.style.transitionDelay = `${index * 0.03}s`;
         });
