@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectModal();
     initScrollReveal();
     initContactForm();
+    initNewsletterSignup();
     initScrollIndicator();
     initScrollToTop();
 });
@@ -455,6 +456,20 @@ function initProjectModal() {
             link: 'https://papershare.vercel.app',
             caseStudy: 'papershare-case-study.html',
             github: 'https://github.com/m-saad-1/papershare'
+        },
+        8: {
+            title: 'ReceptionAI',
+            tagline: 'Multi-Vertical AI Receptionist',
+            icon: 'AI',
+            description: 'A multi-vertical AI receptionist demo that routes conversations across restaurant, salon, dental, and gym personas. The backend streams Gemini responses over SSE, persists each conversation in MongoDB, and extracts structured lead data into a live admin view so business owners can see captured names, requests, and follow-up needs in real time.',
+            tech: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'Node.js', 'Express', 'MongoDB'],
+            thumbnail: 'images/AI_Chatbot/Multi-vertical-Ai-receptionist-chatbot.avif',
+            images: [
+                'images/AI_Chatbot/Multi-vertical-Ai-receptionist-chatbot.avif'
+            ],
+            link: 'https://multireceptionai.vercel.app/',
+            caseStudy: 'ai-chatbot-case-study.html',
+            github: 'https://github.com/m-saad-1/receptionai'
         }
 
     };
@@ -1158,6 +1173,135 @@ function initContactForm() {
                 input.parentElement.classList.remove('focused');
             }
         });
+    });
+}
+
+// =========================================
+// NEWSLETTER SIGNUP
+// =========================================
+function initNewsletterSignup() {
+    const banner = document.getElementById('newsletterBanner');
+    if (!banner) return;
+
+    const form = banner.querySelector('.newsletter-form');
+    const emailInput = banner.querySelector('#newsletterEmail');
+    const submitBtn = banner.querySelector('.newsletter-submit');
+    const closeBtn = banner.querySelector('.newsletter-close');
+    const status = banner.querySelector('.newsletter-status');
+
+    if (!form || !emailInput || !submitBtn || !closeBtn || !status) return;
+
+    const dismissedKey = 'portfolio-newsletter-dismissed';
+    const subscribedKey = 'portfolio-newsletter-subscribed';
+    const showDelay = 7000;
+    const EMAILJS_CONFIG = {
+        publicKey: 'jwAK1lWQGhjwf2PL8',
+        serviceId: 'service_jsn6z3m',
+        templateId: 'template_pyqy19b'
+    };
+
+    const config = window.EMAILJS_CONFIG || EMAILJS_CONFIG;
+    const isEmailJsConfigured = !!(
+        window.emailjs &&
+        config.publicKey && !config.publicKey.startsWith('YOUR_') &&
+        config.serviceId && !config.serviceId.startsWith('YOUR_') &&
+        config.templateId && !config.templateId.startsWith('YOUR_')
+    );
+
+    const isSuppressed = Boolean(localStorage.getItem(dismissedKey) || localStorage.getItem(subscribedKey));
+
+    const openBanner = () => {
+        banner.classList.add('visible');
+        banner.setAttribute('aria-hidden', 'false');
+        requestAnimationFrame(() => emailInput.focus({ preventScroll: true }));
+    };
+
+    const closeBanner = (persist = true) => {
+        banner.classList.remove('visible');
+        banner.setAttribute('aria-hidden', 'true');
+        if (persist) {
+            localStorage.setItem(dismissedKey, '1');
+        }
+    };
+
+    if (!isSuppressed) {
+        window.setTimeout(() => {
+            if (!localStorage.getItem(dismissedKey) && !localStorage.getItem(subscribedKey)) {
+                openBanner();
+            }
+        }, showDelay);
+    }
+
+    closeBtn.addEventListener('click', () => closeBanner(true));
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const email = String(emailInput.value || '').trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+            status.textContent = 'Please enter a valid email address.';
+            status.classList.add('is-error');
+            status.classList.remove('is-success');
+            emailInput.focus();
+            return;
+        }
+
+        const originalLabel = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Subscribing...';
+        status.classList.remove('is-error', 'is-success');
+        status.textContent = 'Sending your subscription...';
+
+        try {
+            if (isEmailJsConfigured) {
+                await window.emailjs.send(config.serviceId, config.templateId, {
+                    name: 'Portfolio Newsletter',
+                    from_name: 'Portfolio Newsletter',
+                    from_email: email,
+                    email,
+                    message: `Newsletter subscription request from ${email}`,
+                    to_name: 'Muhammad Saad',
+                    reply_to: email,
+                    sent_at: new Date().toLocaleString()
+                });
+            } else {
+                const response = await fetch('https://formsubmit.co/ajax/mhsaad23305@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: 'Portfolio Newsletter',
+                        email,
+                        message: `Newsletter subscription request from ${email}`,
+                        _subject: 'New portfolio newsletter signup',
+                        _captcha: 'false'
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Newsletter signup failed (${response.status})`);
+                }
+            }
+
+            localStorage.setItem(subscribedKey, email);
+            status.textContent = 'Subscribed. You will hear from me when a new case study or launch note drops.';
+            status.classList.add('is-success');
+            form.reset();
+
+            window.setTimeout(() => {
+                closeBanner(false);
+            }, 2200);
+        } catch (error) {
+            console.error('Newsletter signup failed:', error);
+            status.textContent = 'Something went wrong. You can still reach me at mhsaad23305@gmail.com.';
+            status.classList.add('is-error');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalLabel;
+        }
     });
 }
 

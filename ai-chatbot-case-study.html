@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ReceptionAI case study - a multi-vertical AI receptionist built for restaurants, salons, dental clinics, and gyms." name="description"/>
+<title>ReceptionAI Case Study | Muhammad Saad</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="images/msstudio.webp" rel="icon" type="image/jpeg"/>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+    .case-study-hero {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background:
+            radial-gradient(circle at top right, rgba(0, 0, 0, 0.06), transparent 28%),
+            linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-gray-200) 100%);
+        padding: 120px var(--spacing-xl) var(--spacing-2xl);
+        overflow: hidden;
+        border-bottom: 1px solid var(--color-gray-300);
+    }
+
+    .cs-hero-content {
+        max-width: 980px;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .cs-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--color-white);
+        background-color: var(--color-black);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .cs-title {
+        font-family: var(--font-display);
+        font-size: clamp(3.8rem, 8vw, 7rem);
+        line-height: 0.92;
+        letter-spacing: -1px;
+        color: var(--color-black);
+        margin-bottom: var(--spacing-lg);
+        text-transform: uppercase;
+    }
+
+    .cs-subtitle {
+        font-size: clamp(1.05rem, 2vw, 1.45rem);
+        color: var(--color-gray-600);
+        max-width: 820px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .cs-meta-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-xl);
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: var(--spacing-3xl) var(--spacing-xl);
+        border-bottom: 1px solid var(--color-gray-200);
+    }
+
+    .cs-meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .cs-meta-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--color-gray-500);
+    }
+
+    .cs-meta-value {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--color-black);
+    }
+
+    .case-study-body {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: var(--spacing-4xl) var(--spacing-xl);
+    }
+
+    .cs-section {
+        margin-bottom: var(--spacing-4xl);
+    }
+
+    .cs-section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 4vw, 3.4rem);
+        line-height: 1;
+        letter-spacing: 1px;
+        color: var(--color-black);
+        margin-bottom: var(--spacing-xl);
+        padding-bottom: var(--spacing-md);
+        border-bottom: 2px solid var(--color-black);
+        display: inline-block;
+        text-transform: uppercase;
+    }
+
+    .cs-text {
+        font-size: 1.08rem;
+        line-height: 1.85;
+        color: var(--color-gray-800);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .cs-list {
+        margin-bottom: var(--spacing-lg);
+        padding-left: var(--spacing-xl);
+    }
+
+    .cs-list li {
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: var(--color-gray-800);
+        margin-bottom: var(--spacing-sm);
+        position: relative;
+    }
+
+    .cs-list li::before {
+        content: '';
+        position: absolute;
+        left: -1.5rem;
+        top: 0.7rem;
+        width: 8px;
+        height: 8px;
+        background-color: var(--color-black);
+        border-radius: 50%;
+    }
+
+    .cs-highlight-box {
+        background-color: var(--color-gray-100);
+        border-left: 4px solid var(--color-black);
+        padding: var(--spacing-xl);
+        margin: var(--spacing-2xl) 0;
+    }
+
+    .cs-highlight-box h4 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: var(--spacing-sm);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .cs-image {
+        width: 100%;
+        height: auto;
+        margin: var(--spacing-2xl) 0 var(--spacing-md);
+        border: 1px solid var(--color-gray-200);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .cs-image-caption {
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--color-gray-500);
+        margin-bottom: var(--spacing-3xl);
+        font-style: italic;
+    }
+
+    .cs-tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-lg);
+    }
+
+    .cs-tech-card {
+        background-color: var(--color-white);
+        border: 1px solid var(--color-gray-200);
+        padding: var(--spacing-lg);
+        text-align: center;
+        transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .cs-tech-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .cs-tech-name {
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--color-black);
+    }
+
+    .cs-quote {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        line-height: 1.2;
+        color: var(--color-black);
+        text-align: center;
+        margin: var(--spacing-4xl) 0;
+        padding: 0 var(--spacing-xl);
+        position: relative;
+    }
+
+    .cs-quote::before {
+        content: '"';
+        font-size: 5rem;
+        color: var(--color-gray-300);
+        position: absolute;
+        top: -2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    @media (max-width: 768px) {
+        .case-study-hero {
+            min-height: 50vh;
+            padding-top: 100px;
+        }
+
+        .cs-section-title {
+            border-bottom-width: 1px;
+        }
+    }
+</style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <a aria-label="MsStudio" class="nav-logo" href="index.html#hero">
+            <img alt="MsStudio logo" class="brand-logo-image" src="images/msstudio.webp"/>
+            <span class="brand-logo-text">MhSaad</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a class="nav-link" href="about.html">About</a></li>
+            <li><a class="nav-link" href="services.html">Services</a></li>
+            <li><a class="nav-link" href="dev-process.html">Dev Process</a></li>
+            <li><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+        </ul>
+        <div class="nav-meta">
+            <button aria-label="Toggle dark mode" class="theme-toggle-btn" id="themeToggle">
+                <svg class="sun-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="display: none;" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line><line x1="1" x2="3" y1="12" y2="12"></line><line x1="21" x2="23" y1="12" y2="12"></line><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line></svg>
+                <svg class="moon-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+            <div aria-live="polite" class="nav-datetime">
+                <div class="nav-time-wrap">
+                    <span class="nav-time" id="navTime">12:00</span>
+                    <div class="nav-time-meta">
+                        <span class="nav-ampm" id="navAmPm">AM</span>
+                        <span class="nav-date" id="navDate">THU, 26 MAR 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button aria-label="Toggle navigation" class="nav-toggle">
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<header class="case-study-hero">
+<div class="cs-hero-content">
+<span class="cs-badge">Deep-Dive Engineering Case Study</span>
+<h1 class="cs-title">ReceptionAI</h1>
+<p class="cs-subtitle">A multi-vertical AI receptionist platform that turns a simple chat experience into a structured business intake system for restaurants, salons, dental clinics, and gyms.</p>
+</div>
+</header>
+
+<div class="cs-meta-grid">
+<div class="cs-meta-item">
+<span class="cs-meta-label">Role</span>
+<span class="cs-meta-value">Full Stack Engineer</span>
+</div>
+<div class="cs-meta-item">
+<span class="cs-meta-label">Domain</span>
+<span class="cs-meta-value">AI Receptionist / Lead Capture</span>
+</div>
+<div class="cs-meta-item">
+<span class="cs-meta-label">Core Stack</span>
+<span class="cs-meta-value">React, TypeScript, Vite, Tailwind CSS, Zustand, Node.js, Express, MongoDB</span>
+</div>
+<div class="cs-meta-item">
+<span class="cs-meta-label">Architecture</span>
+<span class="cs-meta-value">Persona Registry, SSE Streaming, Lead Extraction</span>
+</div>
+</div>
+
+<main class="case-study-body">
+<section class="cs-section">
+<h2 class="cs-section-title">Executive Summary</h2>
+<p class="cs-text">ReceptionAI is a productized AI receptionist demo designed to feel like a staffed front desk rather than a generic chatbot. The experience lets a visitor choose a vertical, start a conversation, and interact with a business-specific persona that responds in a grounded, service-oriented way.</p>
+<p class="cs-text">The key idea was not simply to generate responses. It was to make each conversation operationally useful. Behind the chat UI, the system streams model output in real time, captures structured lead information, and exposes those insights in a live admin-style view so the interaction produces business value as well as user delight.</p>
+</section>
+
+<img src="images/AI_Chatbot/Multi-vertical-Ai-receptionist-chatbot.avif" alt="ReceptionAI interface preview" class="cs-image"/>
+<div class="cs-image-caption">The live demo interface, combining industry selection, streamed chat responses, and the lead-insights panel.</div>
+
+<section class="cs-section">
+<h2 class="cs-section-title">The Product Problem</h2>
+<p class="cs-text">Most chatbot demos are shallow. They answer questions, but they do not understand industry context, booking intent, or how a conversation should become a usable business record. I wanted this project to solve a more realistic front-desk problem: handle intake differently depending on the business, keep the conversation on track, and preserve the important details automatically.</p>
+<ul class="cs-list">
+<li><strong>Context switching:</strong> The same interface needed to support restaurants, salons, dental clinics, and gyms without feeling templated.</li>
+<li><strong>Lead capture:</strong> The system had to extract names, contact details, requests, and timing into a structured lead record.</li>
+<li><strong>Conversation quality:</strong> The assistant needed strong guardrails so it could stay helpful, ask one question at a time, and avoid over-asking.</li>
+<li><strong>Operational visibility:</strong> The business owner view needed to show what the AI already captured, not just the raw transcript.</li>
+</ul>
+</section>
+
+<section class="cs-section">
+<h2 class="cs-section-title">System Architecture</h2>
+<p class="cs-text">The stack is intentionally straightforward and production-minded. The frontend is built with React 18, TypeScript, Vite, Tailwind CSS, and Zustand for state. The backend uses Node.js, Express, MongoDB, Mongoose, and Google Gemini for generation.</p>
+<p class="cs-text">Conversation flow starts when the user selects a business type. That creates a conversation session on the backend, returns the active persona config, and then streams responses back over Server-Sent Events. Streaming matters here because it gives the demo a live, responsive feel instead of forcing users to wait for a full response before anything appears on screen.</p>
+
+<div class="cs-tech-grid">
+<div class="cs-tech-card"><div class="cs-tech-name">React 18</div></div>
+<div class="cs-tech-card"><div class="cs-tech-name">TypeScript</div></div>
+<div class="cs-tech-card"><div class="cs-tech-name">Vite</div></div>
+<div class="cs-tech-card"><div class="cs-tech-name">Tailwind CSS</div></div>
+<div class="cs-tech-card"><div class="cs-tech-name">Zustand</div></div>
+<div class="cs-tech-card"><div class="cs-tech-name">Node.js</div></div>
+<div class="cs-tech-card"><div class="cs-tech-name">Express</div></div>
+<div class="cs-tech-card"><div class="cs-tech-name">MongoDB</div></div>
+</div>
+
+<div class="cs-highlight-box">
+<h4>Why this architecture works</h4>
+<p class="cs-text">It keeps the conversation state, the AI response stream, and the business-insight layer separate. That makes the demo easier to extend, easier to reason about, and much closer to how a real appointment or lead generation workflow would be built in production.</p>
+</div>
+</section>
+
+<section class="cs-section">
+<h2 class="cs-section-title">Persona Design And Guardrails</h2>
+<p class="cs-text">Each vertical is powered by a persona registry in the backend, with a shared universal rule set and domain-specific instructions layered on top. That registry lets the app switch behavior cleanly between the restaurant, salon, dental, and gym experiences without hardcoding one-off logic into the UI.</p>
+<p class="cs-text">The universal instructions keep the assistant grounded: stay in character, ask one question at a time, handle interruptions naturally, and avoid inventing details that are not present in the business configuration. The dental persona is especially strict, because it refuses diagnosis or treatment advice and routes urgent cases back to the clinic directly.</p>
+<div class="cs-highlight-box">
+<h4>Design principle</h4>
+<p class="cs-text">The assistant should feel like a capable front-desk employee, not a prompt playground. That framing changes the tone, the pacing, and the product expectations in a very useful way.</p>
+</div>
+</section>
+
+<section class="cs-section">
+<h2 class="cs-section-title">Lead Extraction And Business Intelligence</h2>
+<p class="cs-text">After each assistant response, the backend runs a separate extraction step that converts the conversation into a structured lead record. That record is stored in MongoDB and updated carefully so new information is added without overwriting existing details with guesses.</p>
+<p class="cs-text">The extraction service looks for fields like name, phone, email, requested service, preferred date and time, intent, sentiment, a summary sentence, and the next best action. That gives the project a realistic business angle: it does not just chat, it produces a clean handoff artifact for the owner or staff member.</p>
+<ul class="cs-list">
+<li><strong>Streaming UI:</strong> The user sees the response arrive progressively via SSE.</li>
+<li><strong>Conversation persistence:</strong> Chat history is stored so the assistant can continue with context.</li>
+<li><strong>Lead context injection:</strong> Existing captured fields are fed back into the prompt so the assistant does not re-ask what it already knows.</li>
+<li><strong>Admin visibility:</strong> The lead panel turns extracted values into a readable business summary.</li>
+</ul>
+</section>
+
+<section class="cs-section">
+<h2 class="cs-section-title">User Experience Decisions</h2>
+<p class="cs-text">The interface is built to reduce friction quickly. A user picks a vertical, gets a tailored first message, and can use quick replies to move the conversation forward. On the business side, the live insights panel shows exactly what the assistant has captured so far, which makes the demo much easier to understand during a portfolio review or client walkthrough.</p>
+<p class="cs-text">I also paid attention to the feeling of the demo. The goal was to make it look and behave like a real product: clear hierarchy, lightweight transitions, visible state, and enough polish that the AI is supporting the experience instead of dominating it.</p>
+</section>
+
+<div class="cs-quote">A chatbot is interesting. A chatbot that captures useful business data is a product.</div>
+
+<section class="cs-section">
+<h2 class="cs-section-title">Outcome</h2>
+<p class="cs-text">ReceptionAI demonstrates how a small, focused AI product can be turned into something that feels commercially credible. It combines live streaming, structured extraction, domain-specific behavior, and an insight layer into a single experience that is easy to demo and easy to explain.</p>
+<p class="cs-text">If I extend this further, the natural next steps would be multi-channel handoff, appointment calendar integrations, and richer business automations such as webhook delivery and CRM syncing. The foundation is already in place for those additions.</p>
+</section>
+</main>
+
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-brand">
+<a aria-label="Back to Hero" class="footer-logo-link footer-brand-head" href="index.html#hero">
+<span class="footer-name">MHSAAD</span>
+</a>
+</div>
+<div class="footer-links">
+<a class="footer-link" href="https://github.com/m-saad-1" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="footer-link" href="https://www.linkedin.com/in/muhammad-saad24/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+</div>
+<div class="footer-copy">
+<span>&copy; 2026 Muhammad Saad. All rights reserved.</span>
+</div>
+</div>
+</div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

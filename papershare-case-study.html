@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PaperShare - Case Study</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
         :root {
             --color-black: #000000;
@@ -37,13 +38,6 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: var(--font-body); color: var(--color-black); background: var(--color-white); line-height: 1.6; }
-
-        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--color-gray-200); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { font-family: var(--font-display); font-size: 1.5rem; text-decoration: none; color: var(--color-black); display: flex; align-items: center; gap: 0.5rem; }
-        .brand-logo-image { height: 24px; width: auto; }
-        .nav-menu { display: flex; list-style: none; gap: 2rem; }
-        .nav-link { text-decoration: none; color: var(--color-gray-700); font-weight: 500; font-size: 0.9rem; transition: color var(--transition-fast); }
-        .nav-link:hover { color: var(--color-black); }
 
         .case-study-hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 5% 40px; background-color: var(--color-gray-100); }
         .cs-hero-content { max-width: 800px; }
@@ -89,14 +83,36 @@
 <body>
 
     <nav class="navbar">
-        <div class="nav-container" style="display: flex; justify-content: space-between; width: 100%; max-width: 1400px; margin: 0 auto;">
-            <a href="index.html#hero" class="nav-logo">
-                <img src="images/msstudio.webp" alt="MsStudio logo" class="brand-logo-image">
+        <div class="nav-container">
+            <a aria-label="MsStudio" class="nav-logo" href="index.html#hero">
+                <img alt="MsStudio logo" class="brand-logo-image" src="images/msstudio.webp"/>
                 <span class="brand-logo-text">MhSaad</span>
             </a>
             <ul class="nav-menu">
-                <li><a href="index.html#portfolio" class="nav-link">Back to Work</a></li>
+                <li><a class="nav-link" href="about.html">About</a></li>
+                <li><a class="nav-link" href="services.html">Services</a></li>
+                <li><a class="nav-link" href="dev-process.html">Dev Process</a></li>
+                <li><a class="nav-link" href="case-studies.html">Case Studies</a></li>
             </ul>
+            <div class="nav-meta">
+                <button aria-label="Toggle dark mode" class="theme-toggle-btn" id="themeToggle">
+                    <svg class="sun-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="display: none;" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line><line x1="1" x2="3" y1="12" y2="12"></line><line x1="21" x2="23" y1="12" y2="12"></line><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line></svg>
+                    <svg class="moon-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <div aria-live="polite" class="nav-datetime">
+                    <div class="nav-time-wrap">
+                        <span class="nav-time" id="navTime">12:00</span>
+                        <div class="nav-time-meta">
+                            <span class="nav-ampm" id="navAmPm">AM</span>
+                            <span class="nav-date" id="navDate">THU, 26 MAR 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button aria-label="Toggle navigation" class="nav-toggle">
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -168,5 +184,6 @@
 
         </div>
     </main>
+    <script src="script.js"></script>
 </body>
 </html>
