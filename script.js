@@ -98,6 +98,23 @@ function initNavigation() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+
+    const ensureNavCtas = () => {
+        if (!navMenu || navMenu.querySelector('.nav-cta-group')) return;
+
+        const ctaGroup = document.createElement('li');
+        ctaGroup.className = 'nav-cta-group';
+        ctaGroup.innerHTML = `
+            <a class="nav-cta-link nav-cta-link--outline" href="index.html#portfolio">Portfolio</a>
+            <a class="nav-cta-link nav-cta-link--solid" href="contact.html">Contact Me</a>
+        `;
+
+        navMenu.appendChild(ctaGroup);
+    };
+
+    ensureNavCtas();
+
+    const navInteractiveLinks = document.querySelectorAll('.nav-link, .nav-cta-link');
     let lastScroll = 0;
     let navScrollFrame = 0;
 
@@ -111,7 +128,7 @@ function initNavigation() {
     }
 
     // Close menu when clicking a link
-    navLinks.forEach(link => {
+    navInteractiveLinks.forEach(link => {
         link.addEventListener('click', () => {
             navToggle?.classList.remove('active');
             navMenu?.classList.remove('active');
@@ -326,30 +343,8 @@ function initProjectModal() {
             caseStudy: 'devbug-case-study.html',
             github: 'https://github.com/m-saad-1/DevBug'
         },
-        2: {
-            title: 'FashionHub',
-            tagline: 'E-commerce Platform',
-            icon: '🛍️',
-            iconImage: 'images/Fashionhub.webp',
-            description: 'A fashion storefront with product discovery, promotional storytelling, and a conversion-focused shopping interface. It provides an elegant, modern shopping experience tailored for apparel brands. With features like dynamic filtering, real-time inventory tracking, seamless cart management, and a robust admin dashboard, FashionHub ensures both customers and administrators have a frictionless journey from product discovery to final checkout.',
-            tech: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript', 'Node.js + Express', 'Stripe SDK'],
-            thumbnail: 'images/FashionHub/Thumbnail.webp',
-            images: [
-                'images/FashionHub/Main_page.webp',
-                'images/FashionHub/Shop_page.webp',
-                'images/FashionHub/Cart.webp',
-                'images/FashionHub/Signup.webp',
-                'images/FashionHub/Dashboard.webp',
-                'images/FashionHub/Admin_panel.webp',
-                'images/FashionHub/About.webp',
-                'images/FashionHub/Contact.webp'
-            ],
-            link: 'https://fashion-hub.gt.tc',
-            caseStudy: 'fashionhub-case-study.html',
-            github: 'https://github.com/m-saad-1/Men-Fashion-Hub'
-        },
         3: {
-            title: 'Progress Operating System (Progress OS)',
+            title: 'Progress OS',
             tagline: 'Productivity Dashboard',
             icon: '📋',
             iconImage: 'images/personalOS.webp',
@@ -371,25 +366,6 @@ function initProjectModal() {
             link: 'https://progress-os.netlify.app',
             caseStudy: 'progress-os-case-study.html',
             github: 'https://github.com/m-saad-1/Progress-Operating-System'
-        },
-        4: {
-            title: 'VisualShare',
-            tagline: 'Social Image Sharing App',
-            icon: '🖼️',
-            iconImage: 'images/visualshare.webp',
-            description: 'A visual-first social experience focused on streamlined sharing, feed clarity, and strong content presentation. Inspired by minimalist design principles, VisualShare allows creators to upload high-resolution imagery and curate their portfolios without the noise of typical social media algorithms. It includes real-time interactions, custom mood boards, and secure cloud storage powered by Firebase.',
-            tech: ['React', 'Firebase', 'Storage', 'Realtime DB'],
-            thumbnail: 'images/VisualShare/thumbnail.webp',
-            images: [
-                'images/VisualShare/visual.webp',
-                'images/VisualShare/visual1.webp',
-                'images/VisualShare/visual2.webp',
-                'images/VisualShare/visual3.webp',
-                'images/VisualShare/visual4.webp'
-            ],
-            link: 'https://visualshare.gt.tc',
-            caseStudy: 'visualshare-case-study.html',
-            github: 'https://github.com/m-saad-1/VisualShare'
         },
         5: {
             title: 'Apple Leaf Disease Detection System',
@@ -457,21 +433,6 @@ function initProjectModal() {
             caseStudy: 'papershare-case-study.html',
             github: 'https://github.com/m-saad-1/papershare'
         },
-        8: {
-            title: 'ReceptionAI',
-            tagline: 'Multi-Vertical AI Receptionist',
-            icon: 'AI',
-            description: 'A multi-vertical AI receptionist demo that routes conversations across restaurant, salon, dental, and gym personas. The backend streams Gemini responses over SSE, persists each conversation in MongoDB, and extracts structured lead data into a live admin view so business owners can see captured names, requests, and follow-up needs in real time.',
-            tech: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'Node.js', 'Express', 'MongoDB'],
-            thumbnail: 'images/AI_Chatbot/Multi-vertical-Ai-receptionist-chatbot.avif',
-            images: [
-                'images/AI_Chatbot/Multi-vertical-Ai-receptionist-chatbot.avif'
-            ],
-            link: 'https://multireceptionai.vercel.app/',
-            caseStudy: 'ai-chatbot-case-study.html',
-            github: 'https://github.com/m-saad-1/receptionai'
-        }
-
     };
 
     let currentCarouselIndex = 0;
@@ -487,6 +448,29 @@ function initProjectModal() {
     let pendingZoomState = false;
     let wheelZoomAccumulator = 0;
     const decodedImageCache = new Set();
+    let modalLayoutFrame = 0;
+
+    function updateModalDensity() {
+        if (!modalMainView || !modalTech || !modalDescription) return;
+
+        const techItems = Array.from(modalTech.children);
+        if (!techItems.length) {
+            modalMainView.classList.remove('is-tech-heavy');
+            return;
+        }
+
+        const firstTop = techItems[0].offsetTop;
+        const hasMultipleRows = techItems.some(item => Math.abs(item.offsetTop - firstTop) > 2);
+        modalMainView.classList.toggle('is-tech-heavy', window.innerWidth <= 768 && hasMultipleRows);
+    }
+
+    function scheduleModalDensityUpdate() {
+        if (modalLayoutFrame) {
+            cancelAnimationFrame(modalLayoutFrame);
+        }
+
+        modalLayoutFrame = requestAnimationFrame(updateModalDensity);
+    }
 
     function preloadImage(src) {
         if (!src) return Promise.resolve();
@@ -643,6 +627,7 @@ function initProjectModal() {
 
         // Carousel
         populateCarousel(project);
+        scheduleModalDensityUpdate();
     }
 
     function populateCarousel(project) {
@@ -1015,6 +1000,7 @@ function initProjectModal() {
         modalBackBtn.addEventListener('click', () => {
             modalDetailsView.style.display = 'none';
             modalMainView.style.display = 'block';
+            modalMainView.classList.remove('is-tech-heavy');
             modalCaseStudyContent.innerHTML = '';
         });
     }
@@ -1027,10 +1013,12 @@ function initProjectModal() {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
         modal.querySelector('.modal-body').scrollTop = 0;
+        requestAnimationFrame(scheduleModalDensityUpdate);
     }
 
     function closeModal() {
         modal.classList.remove('active');
+        modalMainView?.classList.remove('is-tech-heavy');
         closeLightbox();
         if (carouselUpdateFrame) {
             cancelAnimationFrame(carouselUpdateFrame);
