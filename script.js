@@ -350,7 +350,7 @@ function initProjectModal() {
             iconImage: 'images/Fashionhub.webp',
             description: 'A fashion storefront with product discovery, promotional storytelling, and a conversion-focused shopping interface. It provides an elegant, modern shopping experience tailored for apparel brands. With features like dynamic filtering, real-time inventory tracking, seamless cart management, and a robust admin dashboard, FashionHub ensures both customers and administrators have a frictionless journey from product discovery to final checkout.',
             tech: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript', 'Node.js + Express', 'Stripe SDK'],
-            thumbnail: 'images/FashionHub/Thumbnail.webp',
+            thumbnail: 'images/FashionHub/thumbnail-900.webp',
             images: [
                 'images/FashionHub/Main_page.webp',
                 'images/FashionHub/Shop_page.webp',
@@ -396,7 +396,7 @@ function initProjectModal() {
             iconImage: 'images/visualshare.webp',
             description: 'A visual-first social experience focused on streamlined sharing, feed clarity, and strong content presentation. Inspired by minimalist design principles, VisualShare allows creators to upload high-resolution imagery and curate their portfolios without the noise of typical social media algorithms. It includes real-time interactions, custom mood boards, and secure cloud storage powered by Firebase.',
             tech: ['React', 'Firebase', 'Storage', 'Realtime DB'],
-            thumbnail: 'images/VisualShare/thumbnail.webp',
+            thumbnail: 'images/VisualShare/thumbnail-900.webp',
             images: [
                 'images/VisualShare/visual.webp',
                 'images/VisualShare/visual1.webp',
@@ -414,9 +414,9 @@ function initProjectModal() {
             icon: '🌿',
             description: 'A machine-learning concept focused on identifying crop health issues from image samples to support faster field-level diagnostics. Utilizing advanced convolutional neural networks and Grad-CAM explainability, this tool allows farmers to upload photos of apple leaves and receive instant, highly accurate disease classifications. It bridges the gap between complex AI models and accessible agricultural solutions.',
             tech: ['Python', 'TensorFlow / Keras', 'Flask', 'OpenCV', 'EfficientNet', 'Grad-CAM', 'NumPy'],
-            thumbnail: 'images/leaf_disease_detection/thumbnail.webp',
+            thumbnail: 'images/leaf_disease_detection/thumbnail-900.webp',
             images: [
-                'images/leaf_disease_detection/thumbnail.webp',
+                'images/leaf_disease_detection/thumbnail-900.webp',
                 'images/leaf_disease_detection/Uplaodimage_and_predictedimageanddetails.webp',
                 'images/leaf_disease_detection/Diseasedimage_prediction.webp',
                 'images/leaf_disease_detection/Healthyimageprediction.webp',
@@ -432,7 +432,7 @@ function initProjectModal() {
             icon: '🛍️',
             description: 'A production-level multi-brand fashion marketplace featuring product discovery, brand dashboards, orders, returns, and event-driven operations. Built with a robust microservices-inspired architecture, Broady handles complex split-cart checkouts, cross-brand inventory sync, and real-time faceted search using Meilisearch. It provides independent boutiques with powerful analytics while offering consumers a seamless, unified shopping experience.',
             tech: ['Next.js', 'Express', 'Prisma', 'PostgreSQL', 'Redis'],
-            thumbnail: 'images/Broady/Broady/thumbnail.avif',
+            thumbnail: 'images/Broady/Broady/thumbnail-900.avif',
             images: [
                 'images/Broady/Broady/Main_page.avif',
                 'images/Broady/Broady/Catalog_page.avif',
@@ -460,7 +460,7 @@ function initProjectModal() {
             icon: '📄',
             description: 'A platform designed to simplify the discovery, sharing, and discussion of academic research papers. PaperShare provides a unified interface for students, researchers, and academics to request hard-to-find papers, upload documents, and engage in real-time academic discourse. Features include a dynamic leaderboard, interactive chat, and a highly organized paper repository.',
             tech: ['Next.js', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'WebSockets'],
-            thumbnail: 'images/Papershare/Thumbnail.avif',
+            thumbnail: 'images/Papershare/thumbnail-900.avif',
             images: [
                 'images/Papershare/Main_page.avif',
                 'images/Papershare/Dashboard.avif',
@@ -480,9 +480,9 @@ function initProjectModal() {
             icon: 'AI',
             description: 'A multi-vertical AI receptionist demo that routes conversations across restaurant, salon, dental, and gym personas. The backend streams Gemini responses over SSE, persists each conversation in MongoDB, and extracts structured lead data into a live admin view so business owners can see captured names, requests, and follow-up needs in real time.',
             tech: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'Node.js', 'Express', 'MongoDB'],
-            thumbnail: 'images/AI_Chatbot/Multi-vertical-Ai-receptionist-chatbot.avif',
+            thumbnail: 'images/AI_Chatbot/thumbnail-900.avif',
             images: [
-                'images/AI_Chatbot/Multi-vertical-Ai-receptionist-chatbot.avif'
+                'images/AI_Chatbot/thumbnail-900.avif'
             ],
             link: 'https://multireceptionai.vercel.app/',
             caseStudy: 'ai-chatbot-case-study.html',
