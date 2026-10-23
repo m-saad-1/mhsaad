@@ -3482,9 +3482,9 @@ a.contact-value:hover {
     .nav-menu {
         position: fixed;
         top: calc(clamp(0.5rem, 1.5vw, 1rem) + 4.8rem);
-        left: clamp(0.75rem, 2.4vw, 1.75rem);
-        right: clamp(0.75rem, 2.4vw, 1.75rem);
-        width: auto;
+        left: 0;
+        right: 0;
+        width: 100%;
         max-height: calc(100vh - 7.5rem);
         flex-direction: column;
         align-items: stretch;
@@ -3494,7 +3494,7 @@ a.contact-value:hover {
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 245, 245, 0.97)), var(--color-white);
         border: 1px solid var(--color-gray-200);
         box-shadow: 0 28px 60px rgba(0, 0, 0, 0.12);
-        border-radius: 24px;
+        border-radius: 0;
         transform: translate3d(0, -12px, 0) scale(0.985);
         opacity: 0;
         visibility: hidden;
@@ -3502,6 +3502,29 @@ a.contact-value:hover {
         transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease, visibility 0.28s ease;
         overflow-y: auto;
         transform-origin: top center;
+    }
+
+    [data-theme="dark"] .nav-menu {
+        background: linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(18, 18, 18, 0.98));
+        border-color: var(--color-gray-300);
+        box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    [data-theme="dark"] .nav-menu .nav-link,
+    [data-theme="dark"] .nav-menu .nav-link:hover,
+    [data-theme="dark"] .nav-menu .nav-link.active {
+        color: var(--color-black);
+    }
+
+    [data-theme="dark"] .nav-menu .nav-cta-link--outline {
+        color: var(--color-black);
+        border-color: var(--color-gray-400);
+    }
+
+    [data-theme="dark"] .nav-menu .nav-cta-link--solid {
+        color: var(--color-white);
+        border-color: var(--color-black);
+        background-color: var(--color-black);
     }
 
     .nav-menu.active {
@@ -3523,11 +3546,11 @@ a.contact-value:hover {
     }
 
     .nav-link {
-        font-size: 1.15rem;
+        font-size: 1.45rem;
         font-weight: 700;
         letter-spacing: 1.2px;
         width: 100%;
-        padding: 0.15rem 0;
+        padding: 0.35rem 0;
     }
 
     .nav-cta-group {
@@ -3544,9 +3567,9 @@ a.contact-value:hover {
         align-items: center;
         justify-content: center;
         min-height: 48px;
-        padding: 0.85rem 1rem;
+        padding: 1rem 1rem;
         font-family: var(--font-display);
-        font-size: 0.82rem;
+        font-size: 1rem;
         font-weight: 700;
         letter-spacing: 1.5px;
         text-transform: uppercase;
